@@ -1,0 +1,25 @@
+@(vehicles : List[VehicleDetail])
+@doctype.render
+<html lang="en">
+    @header.render("Vehicles")
+    <body>
+        <table>
+            <tr>
+                <th align="left">Nickname</th>
+                <th align="left">Year</th>
+                <th align="left">Make</th>
+                <th align="left">Model</th>
+                <th align="left">Submodel</th>
+            </tr>
+            @for(vehicle<-vehicles){
+            <tr>
+                <td>@vehicle.getNickname</td>
+                <td>@vehicle.getVehicleYear</td>
+                <td>@vehicle.getMakeName</td>
+                <td>@vehicle.getModelName</td>
+                <td>@vehicle.getSubmodelName</td>
+            </tr>
+            }
+        </table>
+    </body>
+</html>
