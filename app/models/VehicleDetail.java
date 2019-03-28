@@ -9,15 +9,16 @@ public class VehicleDetail
     @Id
     private int vehicleId;
 
-    //vehicleId, VIN, vehicleYear, nickname, makeName, modelName, submodelName
+    //vehicleId, VIN, vehicleYear, nickname, makeName, modelName, submodelName, v2.nickname
     private String VIN;
     private int vehicleYear;
     private String nickname;
     private String makeName;
     private String modelName;
     private String submodelName;
+    private String tradedForNickname;
 
-    public VehicleDetail(int vehicleId, String VIN, int vehicleYear, String nickname, String makeName, String modelName, String submodelName)
+    public VehicleDetail(int vehicleId, String VIN, int vehicleYear, String nickname, String makeName, String modelName, String submodelName, String tradedForNickname)
     {
         this.vehicleId = vehicleId;
         this.VIN = VIN;
@@ -26,6 +27,7 @@ public class VehicleDetail
         this.makeName = makeName;
         this.modelName = modelName;
         this.submodelName = submodelName;
+        this.tradedForNickname = tradedForNickname;
     }
 
     public int getVehicleId()
@@ -61,5 +63,10 @@ public class VehicleDetail
     public String getSubmodelName()
     {
         return submodelName;
+    }
+
+    public String getTradedForNickname()
+    {
+        return tradedForNickname;
     }
 }

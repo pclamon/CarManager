@@ -1,8 +1,27 @@
-@(vehicle : Vehicle)
+@(vehicle : VehicleDetail)
 @doctype.render
 <html lang="en">
     @header.render(vehicle.getNickname)
     <body>
-        Vehicle
+        <table>
+            <tr>
+                <th align="left">Nickname</th>
+                <th align="left">Year</th>
+                <th align="left">Make</th>
+                <th align="left">Model</th>
+                <th align="left">Submodel</th>
+                <th align="left">VIN</th>
+                <th align="left">Traded For</th>
+            </tr>
+            <tr>
+                <td>@vehicle.getNickname</td>
+                <td>@vehicle.getVehicleYear</td>
+                <td>@vehicle.getMakeName</td>
+                <td>@vehicle.getModelName</td>
+                <td>@vehicle.getSubmodelName</td>
+                <td>@vehicle.getVIN</td>
+                <td>@vehicle.getTradedForNickname</td>
+            </tr>
+        </table>
     </body>
 </html>

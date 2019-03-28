@@ -1,7 +1,7 @@
 package controllers;
 
-import models.Vehicle;
-import models.VehicleDetail;
+import models.*;
+
 import play.data.FormFactory;
 import play.db.jpa.JPAApi;
 import play.db.jpa.Transactional;
@@ -27,9 +27,15 @@ public class VehicleController extends Controller
     @Transactional(readOnly = true)
     public Result getVehicle(int vehicleId)
     {
-        TypedQuery<Vehicle> query = db.em().createQuery("SELECT v FROM Vehicle v WHERE vehicleId = :vehicleId", Vehicle.class);
+        TypedQuery<VehicleDetail> query = db.em().
+                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeName, mo.modelName, s.submodelName, v2.nickname) " +
+                        "FROM Vehicle v JOIN Model mo ON v.modelId = mo.modelId " +
+                                       "JOIN Submodel s ON v.submodelId = s.submodelId " +
+                                       "JOIN Make m ON m.makeId = mo.makeId " +
+                                       "JOIN Vehicle v2 ON v.tradedForVehicleId = v2.vehicleId " +
+                        "WHERE v.vehicleId = :vehicleId", VehicleDetail.class);
         query.setParameter("vehicleId", vehicleId);
-        Vehicle vehicle = query.getSingleResult();
+        VehicleDetail vehicle = query.getSingleResult();
 
         return ok(views.html.vehicle.render(vehicle));
     }
@@ -37,13 +43,12 @@ public class VehicleController extends Controller
     @Transactional(readOnly = true)
     public Result getVehicles()
     {
-        //int vehicleId, String VIN, int vehicleYear, String nickname, String makeName, String modelName, String submodelName
+        //vehicleId, VIN, vehicleYear, nickname, makeName, modelName, submodelName, tradedForVehicleId
         TypedQuery<VehicleDetail> query = db.em().
-                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeName, mo.modelName, s.submodelName) " +
+                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeName, mo.modelName, s.submodelName, v.tradedForVehicleId) " +
                         "FROM Vehicle v JOIN Model mo ON v.modelId = mo.modelId " +
                                        "JOIN Submodel s ON v.submodelId = s.submodelId " +
-                                       "JOIN Make m ON m.makeId = mo.makeId " +
-                        "ORDER BY v.nickname, m.makeName, mo.modelName, s.submodelName", VehicleDetail.class);
+                                       "JOIN Make m ON m.makeId = mo.makeId", VehicleDetail.class);
         List<VehicleDetail> vehicles = query.getResultList();
 
         return ok(views.html.vehicles.render(vehicles));

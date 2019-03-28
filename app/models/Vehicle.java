@@ -16,8 +16,8 @@ public class Vehicle
     private int vehicleYear;
     private String nickname;
     private int modelId;
-    private int submodelId;
-    private int tradedForVehicleId;
+    private Integer submodelId;
+    private Integer tradedForVehicleId;
 
     public int getVehicleId()
     {
@@ -44,12 +44,12 @@ public class Vehicle
         return modelId;
     }
 
-    public int getSubmodelId()
+    public Integer getSubmodelId()
     {
         return submodelId;
     }
 
-    public int getTradedForVehicleId()
+    public Integer getTradedForVehicleId()
     {
         return tradedForVehicleId;
     }
