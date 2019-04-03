@@ -1,0 +1,40 @@
+@(makes : List[Make])
+@doctype.render
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add a Vehicle</title>
+        <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
+        <script type="text/javascript" src="/assets/lib/jquery/jquery.min.js"></script>
+        <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/assets/lib/cascading-dropdown/jquery.cascading-drop-down.min.js"></script>
+    </head>
+    <body>
+        <h3>Add a Vehicle</h3>
+        <form method="post">
+            @helper.CSRF.formField
+            <input type="text" placeholder="nickname" name="nickname">
+            <select>
+                @for(i<-2020 to 1900 by -1){
+                <option value="@i">@i</option>
+                }
+            </select>
+            <select name="make" class="cascadingDropDown" data-group="product-1" data-id="make"
+                    data-target="model" data-url="data/models" data-replacement="container1">
+                <option value="">Select Make</option>
+                @for(make<-makes){
+                <option value="@make.getMakeId">@make.getMakeName</option>
+                }
+            </select>
+            <select name="model" class="cascadingDropDown" data-group="product-1" data-id="model"
+                    data-target="submodel" data-url="data/submodels" data-replacement="container1"
+                    data-default-label="Select Model" disabled>
+            </select>
+            <select name="submodel" class="cascadingDropDown" data-group="product-1" data-id="submodel"
+                    data-replacement="container1" data-default-label="Select Submodel" data-final disabled>
+            </select>
+            <input type="submit" value="Save">
+        </form>
+        <script type="text/javascript" src="/assets/javascripts/cascading-drop-down.js"></script>
+    </body>
+</html>

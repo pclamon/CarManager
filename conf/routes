@@ -12,9 +12,23 @@ POST    /test                       controllers.TestController.postTest
 GET     /testdb                     controllers.TestController.getTestDb
 POST    /testdb                     controllers.TestController.postTestDb
 
+GET     /home                       controllers.HomeController.getHome
+
 GET     /vehicle/:id                controllers.VehicleController.getVehicle(id:Integer)
 
 GET     /vehicles                   controllers.VehicleController.getVehicles
+
+GET     /vehicleadd                 controllers.VehicleController.getVehicleAdd
+POST    /vehicleadd                 controllers.VehicleController.postVehicleAdd
+
+GET     /data/models                controllers.VehicleController.getModels
+GET     /data/submodels             controllers.VehicleController.getSubmodels
+
+GET     /vehicleedit/:id            controllers.VehicleController.getVehicleEdit(id:Integer)
+POST    /vehicleedit/:id            controllers.VehicleController.postVehicleEdit(id:Integer)
+
+GET     /vindecode                  controllers.VehicleController.getVINDecode
+POST    /vindecode                  controllers.VehicleController.postVINDecode
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

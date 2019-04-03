@@ -1,0 +1,17 @@
+@(vehicle : VehicleDetail, vehicles : List[VehicleDetail])
+@doctype.render
+<html lang="en">
+    @header.render("Editing " + vehicle.getVehicleTitle)
+    <body>
+        <p>Editing @vehicle.getVehicleTitle</p>
+        <form method="post" enctype="multipart/form-data">
+            @helper.CSRF.formField
+            <input type="text" value="@vehicle.getNickname" placeholder="nickname" name="nickname">
+            <select>
+                @for(i<-2020 to 1900 by -1){
+                <option value="@vehicle.getVehicleYear">@vehicle.getVehicleYear</option>
+                }
+            </select>
+        </form>
+    </body>
+</html>

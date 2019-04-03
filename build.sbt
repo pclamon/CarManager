@@ -12,6 +12,9 @@ libraryDependencies += guice
 
 //GUI
 libraryDependencies += "org.webjars" % "bootstrap" % "4.3.1"
+libraryDependencies += "org.webjars.bower" % "datatables" % "1.10.19"
+libraryDependencies += "org.webjars.bower" % "jquery" % "3.3.1"
+libraryDependencies += "org.webjars.bowergithub.sebastiansulinski" % "cascading-dropdown" % "1.4.3" intransitive()
 
 //Database
 libraryDependencies += javaJpa

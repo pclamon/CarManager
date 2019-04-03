@@ -1,0 +1,17 @@
+@doctype.render
+<html lang="en">
+    @header.render("VIN Decode")
+    <body>
+        <form method="post">
+            @helper.CSRF.formField
+            <input type="text" placeholder="VIN" name="VIN">
+            <select name="vehicleYear">
+                <option value="">I don't know</option>
+                @for(i<-2020 to 1900 by -1){
+                <option value="@i">@i</option>
+                }
+            </select>
+            <input type="submit" value="Decode">
+        </form>
+    </body>
+</html>

@@ -9,7 +9,6 @@ public class VehicleDetail
     @Id
     private int vehicleId;
 
-    //vehicleId, VIN, vehicleYear, nickname, makeName, modelName, submodelName, v2.nickname
     private String VIN;
     private int vehicleYear;
     private String nickname;
@@ -17,8 +16,11 @@ public class VehicleDetail
     private String modelName;
     private String submodelName;
     private String tradedForNickname;
+    private String tradedForSubmodelName;
+    private Integer tradedForVehicleYear;
+    private String tradedForModelName;
 
-    public VehicleDetail(int vehicleId, String VIN, int vehicleYear, String nickname, String makeName, String modelName, String submodelName, String tradedForNickname)
+    public VehicleDetail(int vehicleId, String VIN, int vehicleYear, String nickname, String makeName, String modelName, String submodelName, String tradedForNickname, String tradedForSubmodelName, Integer tradedForVehicleYear, String tradedForModelName)
     {
         this.vehicleId = vehicleId;
         this.VIN = VIN;
@@ -28,6 +30,9 @@ public class VehicleDetail
         this.modelName = modelName;
         this.submodelName = submodelName;
         this.tradedForNickname = tradedForNickname;
+        this.tradedForSubmodelName = tradedForSubmodelName;
+        this.tradedForVehicleYear = tradedForVehicleYear;
+        this.tradedForModelName = tradedForModelName;
     }
 
     public int getVehicleId()
@@ -68,5 +73,57 @@ public class VehicleDetail
     public String getTradedForNickname()
     {
         return tradedForNickname;
+    }
+
+    public String getTradedForSubmodelName()
+    {
+        return tradedForSubmodelName;
+    }
+
+    public Integer getTradedForVehicleYear()
+    {
+        return tradedForVehicleYear;
+    }
+
+    public String getTradedForModelName()
+    {
+        return tradedForModelName;
+    }
+
+    public String getTradedForTitle()
+    {
+
+        if (this.tradedForModelName == null)
+        {
+            return "";
+        }
+        else if (this.tradedForNickname == null && this.tradedForSubmodelName == null)
+        {
+            return this.tradedForVehicleYear + " " + this.tradedForModelName;
+        }
+        else if (this.tradedForNickname == null)
+        {
+            return this.tradedForVehicleYear + " " + this.tradedForModelName + " " + this.tradedForSubmodelName;
+        }
+        else
+        {
+            return this.tradedForNickname;
+        }
+    }
+
+    public String getVehicleTitle()
+    {
+        if (this.nickname == null && this.submodelName == null)
+        {
+            return this.vehicleYear + " " + this.modelName;
+        }
+        else if (this.nickname == null)
+        {
+            return this.vehicleYear + " " + this.modelName + " " + this.submodelName;
+        }
+        else
+        {
+            return this.nickname;
+        }
     }
 }
