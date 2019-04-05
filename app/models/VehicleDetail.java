@@ -12,23 +12,35 @@ public class VehicleDetail
     private String VIN;
     private int vehicleYear;
     private String nickname;
+    private int makeId;
     private String makeName;
+    private int modelId;
     private String modelName;
+    private Integer submodelId;
     private String submodelName;
+    private Integer tradedForVehicleId;
     private String tradedForNickname;
     private String tradedForSubmodelName;
     private Integer tradedForVehicleYear;
     private String tradedForModelName;
 
-    public VehicleDetail(int vehicleId, String VIN, int vehicleYear, String nickname, String makeName, String modelName, String submodelName, String tradedForNickname, String tradedForSubmodelName, Integer tradedForVehicleYear, String tradedForModelName)
+    public VehicleDetail(int vehicleId, String VIN, int vehicleYear, String nickname, int makeId,
+                         String makeName, int modelId, String modelName, Integer submodelId,
+                         String submodelName, Integer tradedForVehicleId, String tradedForNickname,
+                         String tradedForSubmodelName, Integer tradedForVehicleYear,
+                         String tradedForModelName)
     {
         this.vehicleId = vehicleId;
         this.VIN = VIN;
         this.vehicleYear = vehicleYear;
         this.nickname = nickname;
+        this.makeId = makeId;
         this.makeName = makeName;
+        this.modelId = modelId;
         this.modelName = modelName;
+        this.submodelId = submodelId;
         this.submodelName = submodelName;
+        this.tradedForVehicleId = tradedForVehicleId;
         this.tradedForNickname = tradedForNickname;
         this.tradedForSubmodelName = tradedForSubmodelName;
         this.tradedForVehicleYear = tradedForVehicleYear;
@@ -55,9 +67,19 @@ public class VehicleDetail
         return nickname;
     }
 
+    public int getMakeId()
+    {
+        return makeId;
+    }
+
     public String getMakeName()
     {
         return makeName;
+    }
+
+    public int getModelId()
+    {
+        return modelId;
     }
 
     public String getModelName()
@@ -65,9 +87,19 @@ public class VehicleDetail
         return modelName;
     }
 
+    public Integer getSubmodelId()
+    {
+        return submodelId;
+    }
+
     public String getSubmodelName()
     {
         return submodelName;
+    }
+
+    public Integer getTradedForVehicleId()
+    {
+        return tradedForVehicleId;
     }
 
     public String getTradedForNickname()

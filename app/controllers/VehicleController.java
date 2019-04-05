@@ -35,9 +35,9 @@ public class VehicleController extends Controller
     @Transactional(readOnly = true)
     public Result getVehicle(int vehicleId)
     {
-        //int vehicleId, String VIN, int vehicleYear, String nickname, String makeName, String modelName, String submodelName, String tradedForNickname, String tradedForSubmodelName, int tradedForVehicleYear, String tradedForModelName
+        //int vehicleId, String VIN, int vehicleYear, String nickname, int makeId, String makeName, int modelId, String modelName, Integer submodelId, String submodelName, Integer tradedForVehicleId, String tradedForNickname, String tradedForSubmodelName, Integer tradedForVehicleYear, String tradedForModelName
         TypedQuery<VehicleDetail> query = db.em().
-                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeName, mo.modelName, s.submodelName, v2.nickname, s2.submodelName, v2.vehicleYear, mo2.modelName) " +
+                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeId, m.makeName, mo.modelId, mo.modelName, s.submodelId, s.submodelName, v.tradedForVehicleId, v2.nickname, s2.submodelName, v2.vehicleYear, mo2.modelName) " +
                         "FROM Vehicle v JOIN Model mo ON v.modelId = mo.modelId " +
                                   "LEFT JOIN Submodel s ON v.submodelId = s.submodelId " +
                                        "JOIN Make m ON m.makeId = mo.makeId " +
@@ -56,7 +56,7 @@ public class VehicleController extends Controller
     public Result getVehicles()
     {
         TypedQuery<VehicleDetail> query = db.em().
-                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeName, mo.modelName, s.submodelName, v2.nickname, s2.submodelName, v2.vehicleYear, mo2.modelName) " +
+                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeId, m.makeName, mo.modelId, mo.modelName, s.submodelId, s.submodelName, v.tradedForVehicleId, v2.nickname, s2.submodelName, v2.vehicleYear, mo2.modelName) " +
                         "FROM Vehicle v JOIN Model mo ON v.modelId = mo.modelId " +
                                   "LEFT JOIN Submodel s ON v.submodelId = s.submodelId " +
                                        "JOIN Make m ON m.makeId = mo.makeId " +
@@ -151,7 +151,7 @@ public class VehicleController extends Controller
     public Result getVehicleEdit(int vehicleId)
     {
         TypedQuery<VehicleDetail> query = db.em().
-                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeName, mo.modelName, s.submodelName, v2.nickname, s2.submodelName, v2.vehicleYear, mo2.modelName) " +
+                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeId, m.makeName, mo.modelId, mo.modelName, s.submodelId, s.submodelName, v.tradedForVehicleId, v2.nickname, s2.submodelName, v2.vehicleYear, mo2.modelName) " +
                         "FROM Vehicle v JOIN Model mo ON v.modelId = mo.modelId " +
                         "LEFT JOIN Submodel s ON v.submodelId = s.submodelId " +
                         "JOIN Make m ON m.makeId = mo.makeId " +
@@ -163,23 +163,55 @@ public class VehicleController extends Controller
         query.setParameter("vehicleId", vehicleId);
         VehicleDetail vehicle = query.getSingleResult();
 
-        TypedQuery<VehicleDetail> vehiclesQuery = db.em().
-                createQuery("SELECT NEW VehicleDetail(v.vehicleId, v.VIN, v.vehicleYear, v.nickname, m.makeName, mo.modelName, s.submodelName, v2.nickname, s2.submodelName, v2.vehicleYear, mo2.modelName) " +
-                        "FROM Vehicle v JOIN Model mo ON v.modelId = mo.modelId " +
-                        "LEFT JOIN Submodel s ON v.submodelId = s.submodelId " +
-                             "JOIN Make m ON m.makeId = mo.makeId " +
-                        "LEFT JOIN Vehicle v2 ON v.tradedForVehicleId = v2.vehicleId " +
-                        "LEFT JOIN Model mo2 ON v2.modelId = mo2.modelId " +
-                        "LEFT JOIN Submodel s2 ON v2.submodelId = s2.submodelId " +
-                        "LEFT JOIN Make m2 ON m2.makeId = mo2.makeId", VehicleDetail.class);
-        List<VehicleDetail> vehicles = vehiclesQuery.getResultList();
+        TypedQuery<Make> makeQuery = db.em().
+                createQuery("SELECT m FROM Make m", Make.class);
+        List<Make> makes = makeQuery.getResultList();
 
-        return ok(views.html.vehicleedit.render(vehicle, vehicles));
+        TypedQuery<Model> modelQuery = db.em().
+                createQuery("SELECT mo FROM Model mo", Model.class);
+        List<Model> models = modelQuery.getResultList();
+
+        TypedQuery<Submodel> submodelQuery = db.em().
+                createQuery("SELECT s FROM Submodel s", Submodel.class);
+        List<Submodel> submodels = submodelQuery.getResultList();
+
+        return ok(views.html.vehicleedit.render(vehicle, makes, models, submodels));
     }
 
     @Transactional
     public Result postVehicleEdit(int vehicleId)
     {
+        TypedQuery<Vehicle> query = db.em().createQuery("SELECT v FROM Vehicle v WHERE vehicleId = :vehicleId", Vehicle.class);
+        query.setParameter("vehicleId", vehicleId);
+        Vehicle vehicle = query.getSingleResult();
+
+        DynamicForm form = formFactory.form().bindFromRequest();
+        String nickname = form.get("nickname");
+
+        if (nickname.length() == 0 || nickname.equals(" "))
+        {
+            nickname = null;
+        }
+
+        String vehicleYear = form.get("vehicleYear");
+        String modelId = form.get("modelId");
+        String submodel = form.get("submodelId");
+        Integer submodelId = null;
+
+        if (submodel != null && submodel.length() > 0)
+        {
+            submodelId = Integer.parseInt(submodel);
+        }
+
+        String VIN = form.get("VIN");
+
+        vehicle.setNickname(nickname);
+        vehicle.setVehicleYear(Integer.parseInt(vehicleYear));
+        vehicle.setModelId(Integer.parseInt(modelId));
+        vehicle.setSubmodelId(submodelId);
+        vehicle.setVIN(VIN);
+        db.em().persist(vehicle);
+
         return ok("saved");
     }
 
