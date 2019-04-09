@@ -1,40 +1,60 @@
-@(makes : List[Make])
+@(vehicles : List[VehicleDetail], makes : List[Make])
 @doctype.render
 <html lang="en">
+    @header.render("Adding a Vehicle")
     <head>
-        <meta charset="UTF-8">
-        <title>Add a Vehicle</title>
-        <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
-        <script type="text/javascript" src="/assets/lib/jquery/jquery.min.js"></script>
-        <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="/assets/lib/cascading-dropdown/jquery.cascading-drop-down.min.js"></script>
+        <link rel="stylesheet" href="/assets/stylesheets/backgroundStyle4.css">
     </head>
     <body>
-        <h3>Add a Vehicle</h3>
-        <form method="post">
-            @helper.CSRF.formField
-            <input type="text" placeholder="nickname" name="nickname">
-            <select>
-                @for(i<-2020 to 1900 by -1){
-                <option value="@i">@i</option>
-                }
-            </select>
-            <select name="make" class="cascadingDropDown" data-group="product-1" data-id="make"
-                    data-target="model" data-url="data/models" data-replacement="container1">
-                <option value="">Select Make</option>
-                @for(make<-makes){
-                <option value="@make.getMakeId">@make.getMakeName</option>
-                }
-            </select>
-            <select name="model" class="cascadingDropDown" data-group="product-1" data-id="model"
-                    data-target="submodel" data-url="data/submodels" data-replacement="container1"
-                    data-default-label="Select Model" disabled>
-            </select>
-            <select name="submodel" class="cascadingDropDown" data-group="product-1" data-id="submodel"
-                    data-replacement="container1" data-default-label="Select Submodel" data-final disabled>
-            </select>
-            <input type="submit" value="Save">
-        </form>
+        @navbar.render
+        <div class="bg">
+            <div align="center">
+                <br>
+                <br>
+                <h6 class="display-4">Add a Vehicle</h6>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col">
+                        <form method="post" class="form-inline">
+                            @helper.CSRF.formField
+                            <input type="text" placeholder="Nickname" name="nickname">
+                            <select name="vehicleYear">
+                                @for(i<-2020 to 1900 by -1){
+                                <option value="@i">@i</option>
+                                }
+                            </select>
+                            <select name="make" class="cascadingDropDown" data-group="product-1" data-id="make"
+                                    data-target="model" data-url="data/models" data-replacement="container1">
+                                <option value="">Select Make</option>
+                                @for(make<-makes){
+                                <option value="@make.getMakeId">@make.getMakeName</option>
+                                }
+                            </select>
+                            <select name="model" class="cascadingDropDown" data-group="product-1" data-id="model"
+                                    data-target="submodel" data-url="data/submodels" data-replacement="container1"
+                                    data-default-label="Select Model" disabled>
+                            </select>
+                            <select name="submodel" class="cascadingDropDown" data-group="product-1" data-id="submodel"
+                                    data-replacement="container1" data-default-label="Select Submodel" data-final disabled>
+                            </select>
+                            <input type="text" value="" placeholder="VIN" name="VIN">
+                            <select name="tradedForVehicleId" required>
+                                <option value="" disabled selected>Traded For Vehicle</option>
+                                <option value="0">N/A</option>
+                                @for(vehicle<-vehicles){
+                                <option value="@vehicle.getVehicleId">@vehicle.getVehicleTitle</option>
+                                }
+                            </select>
+                            <input type="submit" class="btn btn-secondary" value="Save">
+                        </form>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="/assets/javascripts/cascading-drop-down.js"></script>
     </body>
 </html>

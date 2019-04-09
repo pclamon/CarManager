@@ -1,35 +1,8 @@
 @doctype.render
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>CarManager</title>
-        <link rel="stylesheet" href="/assets/lib/bootstrap/css/bootstrap.min.css">
-        <script src="/assets/lib/jquery/jquery.min.js"></script>
-        <script src="/assets/lib/popper.js/umd/popper.min.js"></script>
-        <script src="/assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    </head>
+    @header.render("CarManager")
     <body>
-        <nav class="navbar sticky-top navbar-dark bg-secondary">
-            <a class="navbar-brand" href="/home"><h1 class="display-4">CM</h1></a>
-            <button class="navbar-toggler m1-auto" type="button" data-toggle="collapse" data-target="#homeNavbar"
-                    aria-controls="homeNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon my-toggler"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="homeNavbar">
-                <ul class="navbar-nav m1-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            My Garage
-                        </a>
-                        <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item waves-effect waves-light" href="/vehicles">My Vehicles</a>
-                            <a class="dropdown-item waves-effect waves-light" href="/vehicleadd">Add a Vehicle</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <img src="/assets/images/homeMountains.png">
+        @navbar.render
+        <img width="100%" src="/assets/images/homeMountains.png">
     </body>
 </html>

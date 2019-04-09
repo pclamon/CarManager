@@ -27,6 +27,8 @@ GET     /data/submodels             controllers.VehicleController.getSubmodels
 GET     /vehicleedit/:id            controllers.VehicleController.getVehicleEdit(id:Integer)
 POST    /vehicleedit/:id            controllers.VehicleController.postVehicleEdit(id:Integer)
 
+GET     /vehicledelete/:id          controllers.VehicleController.getVehicleDelete(id:Integer)
+
 GET     /vindecode                  controllers.VehicleController.getVINDecode
 POST    /vindecode                  controllers.VehicleController.postVINDecode
 
