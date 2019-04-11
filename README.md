@@ -17,7 +17,7 @@ My garage. The user's personal vehicle inventory.
 
 Individual vehicle page.
 
-![cascadingDropdownSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/cascadingDropdownSnip.PNG)
+![cascadingDropdownSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/cascadingDropdownsSnip.PNG)
 
 Add vehicle page featuring cascading dropdown selects.
 
