@@ -15,7 +15,7 @@ CREATE TABLE Model (
 
 
 CREATE TABLE Submodel (
-                SubmodelId INT NOT NULL,
+                SubmodelId INT AUTO_INCREMENT NOT NULL,
                 SubmodelName VARCHAR(30),
                 ModelId INT NOT NULL,
                 PRIMARY KEY (SubmodelId)
@@ -28,14 +28,14 @@ CREATE TABLE Vehicle (
                 VehicleYear DECIMAL(4) NOT NULL,
                 Nickname VARCHAR(30),
                 ModelId INT NOT NULL,
-                SubmodelId INT,
                 TradedForVehicleId INT,
+                SubmodelId INT,
                 PRIMARY KEY (VehicleId)
 );
 
 
 CREATE TABLE Cost (
-                CostId INT NOT NULL,
+                CostId INT AUTO_INCREMENT NOT NULL,
                 VehicleId INT NOT NULL,
                 CostName VARCHAR(30) NOT NULL,
                 CostDate DATETIME NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE Cost (
 
 
 CREATE TABLE CostDetail (
-                CostDetailId INT NOT NULL,
+                CostDetailId INT AUTO_INCREMENT NOT NULL,
                 CostId INT NOT NULL,
                 Price DECIMAL(10,2) NOT NULL,
                 Notes VARCHAR(250),
@@ -91,11 +91,14 @@ REFERENCES Vehicle (VehicleId)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION;
 
+/*
+Warning: MySQL does not support this relationship's deferrability policy (INITIALLY_DEFERRED).
+*/
 ALTER TABLE Vehicle ADD CONSTRAINT vehicle_vehicle_fk
 FOREIGN KEY (TradedForVehicleId)
 REFERENCES Vehicle (VehicleId)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION;
+ON DELETE RESTRICT
+ON UPDATE RESTRICT;
 
 ALTER TABLE Cost ADD CONSTRAINT vehicle_cost_fk
 FOREIGN KEY (VehicleId)

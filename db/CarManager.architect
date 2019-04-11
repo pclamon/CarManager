@@ -91,7 +91,7 @@
   <table id="TAB22" populated="true" UUID="25eafdc5-d14e-4f0d-bf25-eea49c78d214" name="Submodel" objectType="TABLE" physicalName="Submodel" >
    <remarks></remarks>
    <folder id="FOLTAB221" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL23" populated="true" UUID="af450534-3a2c-4b7f-80b4-e39d2cd9bbe4" autoIncrement="false" autoIncrementSequenceName="Submodel_SubmodelId_seq_1" defaultValue="" name="SubmodelId" nullable="0" physicalName="SubmodelId" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL23" populated="true" UUID="af450534-3a2c-4b7f-80b4-e39d2cd9bbe4" autoIncrement="true" autoIncrementSequenceName="Submodel_SubmodelId_seq_1" defaultValue="" name="SubmodelId" nullable="0" physicalName="SubmodelId" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL24" populated="true" UUID="540a56f8-38a6-41a9-9d1f-46e238db00d5" autoIncrement="false" autoIncrementSequenceName="Submodel_SubmodelName_seq" defaultValue="" name="SubmodelName" nullable="1" physicalName="SubmodelName" precision="30" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
@@ -137,7 +137,7 @@
   <table id="TAB34" populated="true" UUID="7aabdf2b-8d00-46cd-823d-6facbdc41621" name="Cost" objectType="TABLE" physicalName="Cost" >
    <remarks></remarks>
    <folder id="FOLTAB341" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL35" populated="true" UUID="a3b68d62-651c-4d1a-87b7-f89dc7ccb8ac" autoIncrement="false" autoIncrementSequenceName="Cost_CostId_seq" defaultValue="" name="CostId" nullable="0" physicalName="CostId" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL35" populated="true" UUID="a3b68d62-651c-4d1a-87b7-f89dc7ccb8ac" autoIncrement="true" autoIncrementSequenceName="Cost_CostId_seq" defaultValue="" name="CostId" nullable="0" physicalName="CostId" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL36" populated="true" UUID="df416050-0165-4295-bc60-30e551e4c696" autoIncrement="false" autoIncrementSequenceName="Cost_VehicleId_seq" defaultValue="" name="VehicleId" nullable="0" physicalName="VehicleId" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -166,7 +166,7 @@
   <table id="TAB42" populated="true" UUID="8cefa629-61b6-49e2-bbf7-62ee15010979" name="CostDetail" objectType="TABLE" physicalName="CostDetail" >
    <remarks></remarks>
    <folder id="FOLTAB421" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL43" populated="true" UUID="a5f0da78-78c4-4384-853c-1bb412a54778" autoIncrement="false" autoIncrementSequenceName="CostDetail_CostDetailId_seq" defaultValue="" name="CostDetailId" nullable="0" physicalName="CostDetailId" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL43" populated="true" UUID="a5f0da78-78c4-4384-853c-1bb412a54778" autoIncrement="true" autoIncrementSequenceName="CostDetail_CostDetailId_seq" defaultValue="" name="CostDetailId" nullable="0" physicalName="CostDetailId" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL44" populated="true" UUID="469eaec2-6a56-4039-b26c-891d25e5e3d9" autoIncrement="false" autoIncrementSequenceName="CostDetail_CostId_seq" defaultValue="" name="CostId" nullable="0" physicalName="CostId" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -193,7 +193,7 @@
    <relationship id="REL49" populated="true" UUID="f67a1b23-525f-469f-8ef4-dded9fc5c79d" deferrability="7" deleteRule="3" fk-table-ref="TAB28" fkCardinality="7" identifying="false" name="Vehicle_VehiclePicture_fk" physicalName="vehicle_vehiclepicture_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
     <column-mapping id="CMP50" populated="true" UUID="3b15a6e7-707a-4020-b55d-ce703690c40e" fk-column-ref="COL31" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL51" populated="true" UUID="8d4db0e4-dbeb-4027-884b-75b72d9e7b50" deferrability="5" deleteRule="1" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="Vehicle_Vehicle_fk" physicalName="Vehicle_Vehicle_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="1" >
+   <relationship id="REL51" populated="true" UUID="8d4db0e4-dbeb-4027-884b-75b72d9e7b50" deferrability="5" deleteRule="1" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="Vehicle_Vehicle_fk" physicalName="vehicle_vehicle_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="1" >
     <column-mapping id="CMP52" populated="true" UUID="e80eb758-a922-4077-b023-17555ba162df" fk-column-ref="COL7" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
    <relationship id="REL53" populated="true" UUID="fd9546e2-09fd-4562-9465-88b44f3d98c7" deferrability="7" deleteRule="3" fk-table-ref="TAB34" fkCardinality="7" identifying="false" name="Vehicle_Cost_fk" physicalName="vehicle_cost_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
@@ -232,7 +232,7 @@
   <table-link relationship-ref="REL49" pkConnection="0.2755905511811024" fkConnection="0.49295774647887325" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
   <table-link relationship-ref="REL59" pkConnection="0.4973821989528796" fkConnection="0.46116504854368934" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
   <table-link relationship-ref="REL51" pkConnection="0.23333333333333334" fkConnection="0.6929133858267716" rLineColor="0x000000" pkLabelText="VehicleId" fkLabelText="TradedForVehicleId" orientation="36"/>
-  <table-link relationship-ref="REL53" pkConnection="0.44660194174757284" fkConnection="0.5" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="72"/>
+  <table-link relationship-ref="REL53" pkConnection="0.49740932642487046" fkConnection="0.5" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="72"/>
   <table-link relationship-ref="REL63" pkConnection="0.42424242424242425" fkConnection="0.49411764705882355" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
   <table-link relationship-ref="REL61" pkConnection="0.49295774647887325" fkConnection="0.5631067961165048" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="65"/>
  </play-pen>
