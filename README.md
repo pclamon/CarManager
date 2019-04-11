@@ -1,20 +1,72 @@
 # CarManager
 
-This is a starter application to get you going on your final project.
+CarManager is a vehicle managing application for dealers and car collectors.
 
-## Running
+  - Vehicle inventory and tracker
+  - VIN decoder
 
-Run this using [sbt](http://www.scala-sbt.org/).  
+![homePageSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/homePageSnip.PNG)
 
-```
-sbt run
-```
+Home page.
 
-And then go to http://localhost:9000 to see the running web application.
+![myGarageSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/myGarageSnip.PNG)
 
-## Controllers
+My garage. The user's personal vehicle inventory.
 
-There is a controller already in place to make sure this mostly empty project works.
+![vehicleSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/vehicleSnip.PNG)
 
-- TestController.java:
+Individual vehicle page.
 
+![cascadingDropdownSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/cascadingDropdownSnip.PNG)
+
+Add vehicle page featuring cascading dropdown selects.
+
+### Features
+
+These features can be used in the application:
+
+  - Adding a new vehicle into My Garage
+  - Viewing existing vehicles in a sortable, searchable table
+  - Viewing addition data about existing vehicles
+  - Editing existing vehicles
+  - Deleting vehicles from My Garage
+  - VIN decoder (beta)
+
+### Future Functionality
+
+I plan to add the following to the application:
+
+  - Cost data per vehicle with visuals
+  - Option to export My Garage data to a PDF
+  - Incorporating more NHTSA APIs for make, model, and submodel databases
+  - Incorporating VIN decoder into the add vehicle page for automatic form filling
+  - Develop application for mobile usage
+
+### Tech
+
+I used the following resources to build CarManager:
+
+  - Java
+  - MySQL/MariaDB
+  - Play Framework
+  - HTML/CSS
+  - Twitter Bootstrap
+  - NHTSA API
+
+### More screenshots of the application
+
+![editVehicleSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/editVehicleSnip.PNG)
+
+Edit vehicle detail page.
+
+![deleteModalSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/deleteModalSnip.PNG)
+
+Bootstrap modal usage.
+
+![addVehicleSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/addVehicleSnip.PNG)
+
+Adding vehicle page.
+
+![vinDecoderSnip](https://raw.githubusercontent.com/pclamon/CarManager/master/public/images/screenshots/vinDecoderSnip.PNG)
+
+VIN decoder.
