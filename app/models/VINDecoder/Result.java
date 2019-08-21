@@ -1,160 +1,164 @@
 
 package models.VINDecoder;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "ABS",
-    "ActiveSafetySysNote",
-    "AdaptiveCruiseControl",
-    "AdaptiveDrivingBeam",
-    "AdaptiveHeadlights",
-    "AdditionalErrorText",
-    "AirBagLocCurtain",
-    "AirBagLocFront",
-    "AirBagLocKnee",
-    "AirBagLocSeatCushion",
-    "AirBagLocSide",
-    "Artemis",
-    "AutoReverseSystem",
-    "AutomaticPedestrianAlertingSound",
-    "AxleConfiguration",
-    "Axles",
-    "BasePrice",
-    "BatteryA",
-    "BatteryA_to",
-    "BatteryCells",
-    "BatteryInfo",
-    "BatteryKWh",
-    "BatteryKWh_to",
-    "BatteryModules",
-    "BatteryPacks",
-    "BatteryType",
-    "BatteryV",
-    "BatteryV_to",
-    "BedLengthIN",
-    "BedType",
-    "BlindSpotMon",
-    "BodyCabType",
-    "BodyClass",
-    "BrakeSystemDesc",
-    "BrakeSystemType",
-    "BusFloorConfigType",
-    "BusLength",
-    "BusType",
-    "CAFEBodyType",
-    "CAFEMake",
-    "CAFEModel",
-    "CAN_AACN",
-    "CIB",
-    "CashForClunkers",
-    "ChargerLevel",
-    "ChargerPowerKW",
-    "CoolingType",
-    "Country",
-    "CurbWeightLB",
-    "CustomMotorcycleType",
-    "DaytimeRunningLight",
-    "DestinationMarket",
-    "DisplacementCC",
-    "DisplacementCI",
-    "DisplacementL",
-    "Doors",
-    "DriveType",
-    "DriverAssist",
-    "DynamicBrakeSupport",
-    "EDR",
-    "ESC",
-    "EVDriveUnit",
-    "ElectrificationLevel",
-    "EngineConfiguration",
-    "EngineCycles",
-    "EngineCylinders",
-    "EngineHP",
-    "EngineHP_to",
-    "EngineKW",
-    "EngineManufacturer",
-    "EngineModel",
-    "EntertainmentSystem",
-    "EquipmentType",
-    "ErrorCode",
-    "ForwardCollisionWarning",
-    "FuelInjectionType",
-    "FuelTypePrimary",
-    "FuelTypeSecondary",
-    "GVWR",
-    "KeylessIgnition",
-    "LaneDepartureWarning",
-    "LaneKeepSystem",
-    "LowerBeamHeadlampLightSource",
-    "Make",
-    "Manufacturer",
-    "ManufacturerId",
-    "ManufacturerType",
-    "Model",
-    "ModelYear",
-    "MotorcycleChassisType",
-    "MotorcycleSuspensionType",
-    "NCAPBodyType",
-    "NCAPMake",
-    "NCAPModel",
-    "NCICCode",
-    "NCSABodyType",
-    "NCSAMake",
-    "NCSAModel",
-    "Note",
-    "OtherBusInfo",
-    "OtherEngineInfo",
-    "OtherMotorcycleInfo",
-    "OtherRestraintSystemInfo",
-    "OtherTrailerInfo",
-    "ParkAssist",
-    "PedestrianAutomaticEmergencyBraking",
-    "PlantCity",
-    "PlantCompanyName",
-    "PlantCountry",
-    "PlantState",
-    "PossibleValues",
-    "Pretensioner",
-    "RearCrossTrafficAlert",
-    "RearVisibilitySystem",
-    "SAEAutomationLevel",
-    "SAEAutomationLevel_to",
-    "SeatBeltsAll",
-    "SeatRows",
-    "Seats",
-    "SemiautomaticHeadlampBeamSwitching",
-    "Series",
-    "Series2",
-    "SteeringLocation",
-    "SuggestedVIN",
-    "TPMS",
-    "TopSpeedMPH",
-    "TrackWidth",
-    "TractionControl",
-    "TrailerBodyType",
-    "TrailerLength",
-    "TrailerType",
-    "TransmissionSpeeds",
-    "TransmissionStyle",
-    "Trim",
-    "Trim2",
-    "Turbo",
-    "VIN",
-    "ValveTrainDesign",
-    "VehicleType",
-    "WheelBaseLong",
-    "WheelBaseShort",
-    "WheelBaseType",
-    "WheelSizeFront",
-    "WheelSizeRear",
-    "Wheels",
-    "Windows"
+        "ABS",
+        "ActiveSafetySysNote",
+        "AdaptiveCruiseControl",
+        "AdaptiveDrivingBeam",
+        "AdaptiveHeadlights",
+        "AdditionalErrorText",
+        "AirBagLocCurtain",
+        "AirBagLocFront",
+        "AirBagLocKnee",
+        "AirBagLocSeatCushion",
+        "AirBagLocSide",
+        "AutoReverseSystem",
+        "AutomaticPedestrianAlertingSound",
+        "AxleConfiguration",
+        "Axles",
+        "BasePrice",
+        "BatteryA",
+        "BatteryA_to",
+        "BatteryCells",
+        "BatteryInfo",
+        "BatteryKWh",
+        "BatteryKWh_to",
+        "BatteryModules",
+        "BatteryPacks",
+        "BatteryType",
+        "BatteryV",
+        "BatteryV_to",
+        "BedLengthIN",
+        "BedType",
+        "BlindSpotMon",
+        "BodyCabType",
+        "BodyClass",
+        "BrakeSystemDesc",
+        "BrakeSystemType",
+        "BusFloorConfigType",
+        "BusLength",
+        "BusType",
+        "CAN_AACN",
+        "CIB",
+        "CashForClunkers",
+        "ChargerLevel",
+        "ChargerPowerKW",
+        "CoolingType",
+        "CurbWeightLB",
+        "CustomMotorcycleType",
+        "DaytimeRunningLight",
+        "DestinationMarket",
+        "DisplacementCC",
+        "DisplacementCI",
+        "DisplacementL",
+        "Doors",
+        "DriveType",
+        "DriverAssist",
+        "DynamicBrakeSupport",
+        "EDR",
+        "ESC",
+        "EVDriveUnit",
+        "ElectrificationLevel",
+        "EngineConfiguration",
+        "EngineCycles",
+        "EngineCylinders",
+        "EngineHP",
+        "EngineHP_to",
+        "EngineKW",
+        "EngineManufacturer",
+        "EngineModel",
+        "EntertainmentSystem",
+        "ErrorCode",
+        "ErrorText",
+        "ForwardCollisionWarning",
+        "FuelInjectionType",
+        "FuelTypePrimary",
+        "FuelTypeSecondary",
+        "GCWR",
+        "GCWR_to",
+        "GVWR",
+        "GVWR_to",
+        "KeylessIgnition",
+        "LaneDepartureWarning",
+        "LaneKeepSystem",
+        "LowerBeamHeadlampLightSource",
+        "Make",
+        "Manufacturer",
+        "ManufacturerId",
+        "Model",
+        "ModelYear",
+        "MotorcycleChassisType",
+        "MotorcycleSuspensionType",
+        "NCSABodyType",
+        "NCSAMake",
+        "NCSAMapExcApprovedBy",
+        "NCSAMapExcApprovedOn",
+        "NCSAMappingException",
+        "NCSAModel",
+        "NCSANote",
+        "Note",
+        "OtherBusInfo",
+        "OtherEngineInfo",
+        "OtherMotorcycleInfo",
+        "OtherRestraintSystemInfo",
+        "OtherTrailerInfo",
+        "ParkAssist",
+        "PedestrianAutomaticEmergencyBraking",
+        "PlantCity",
+        "PlantCompanyName",
+        "PlantCountry",
+        "PlantState",
+        "PossibleValues",
+        "Pretensioner",
+        "RearCrossTrafficAlert",
+        "RearVisibilitySystem",
+        "SAEAutomationLevel",
+        "SAEAutomationLevel_to",
+        "SeatBeltsAll",
+        "SeatRows",
+        "Seats",
+        "SemiautomaticHeadlampBeamSwitching",
+        "Series",
+        "Series2",
+        "SteeringLocation",
+        "SuggestedVIN",
+        "TPMS",
+        "TopSpeedMPH",
+        "TrackWidth",
+        "TractionControl",
+        "TrailerBodyType",
+        "TrailerLength",
+        "TrailerType",
+        "TransmissionSpeeds",
+        "TransmissionStyle",
+        "Trim",
+        "Trim2",
+        "Turbo",
+        "VIN",
+        "ValveTrainDesign",
+        "VehicleType",
+        "WheelBaseLong",
+        "WheelBaseShort",
+        "WheelBaseType",
+        "WheelSizeFront",
+        "WheelSizeRear",
+        "Wheels",
+        "Windows"
 })
-public class Result {
+public class Result
+{
 
     @JsonProperty("ABS")
     private String aBS;
@@ -178,8 +182,6 @@ public class Result {
     private String airBagLocSeatCushion;
     @JsonProperty("AirBagLocSide")
     private String airBagLocSide;
-    @JsonProperty("Artemis")
-    private String artemis;
     @JsonProperty("AutoReverseSystem")
     private String autoReverseSystem;
     @JsonProperty("AutomaticPedestrianAlertingSound")
@@ -232,12 +234,6 @@ public class Result {
     private String busLength;
     @JsonProperty("BusType")
     private String busType;
-    @JsonProperty("CAFEBodyType")
-    private String cAFEBodyType;
-    @JsonProperty("CAFEMake")
-    private String cAFEMake;
-    @JsonProperty("CAFEModel")
-    private String cAFEModel;
     @JsonProperty("CAN_AACN")
     private String cANAACN;
     @JsonProperty("CIB")
@@ -250,8 +246,6 @@ public class Result {
     private String chargerPowerKW;
     @JsonProperty("CoolingType")
     private String coolingType;
-    @JsonProperty("Country")
-    private String country;
     @JsonProperty("CurbWeightLB")
     private String curbWeightLB;
     @JsonProperty("CustomMotorcycleType")
@@ -300,10 +294,10 @@ public class Result {
     private String engineModel;
     @JsonProperty("EntertainmentSystem")
     private String entertainmentSystem;
-    @JsonProperty("EquipmentType")
-    private String equipmentType;
     @JsonProperty("ErrorCode")
     private String errorCode;
+    @JsonProperty("ErrorText")
+    private String errorText;
     @JsonProperty("ForwardCollisionWarning")
     private String forwardCollisionWarning;
     @JsonProperty("FuelInjectionType")
@@ -312,8 +306,14 @@ public class Result {
     private String fuelTypePrimary;
     @JsonProperty("FuelTypeSecondary")
     private String fuelTypeSecondary;
+    @JsonProperty("GCWR")
+    private String gCWR;
+    @JsonProperty("GCWR_to")
+    private String gCWRTo;
     @JsonProperty("GVWR")
     private String gVWR;
+    @JsonProperty("GVWR_to")
+    private String gVWRTo;
     @JsonProperty("KeylessIgnition")
     private String keylessIgnition;
     @JsonProperty("LaneDepartureWarning")
@@ -328,8 +328,6 @@ public class Result {
     private String manufacturer;
     @JsonProperty("ManufacturerId")
     private String manufacturerId;
-    @JsonProperty("ManufacturerType")
-    private String manufacturerType;
     @JsonProperty("Model")
     private String model;
     @JsonProperty("ModelYear")
@@ -338,20 +336,20 @@ public class Result {
     private String motorcycleChassisType;
     @JsonProperty("MotorcycleSuspensionType")
     private String motorcycleSuspensionType;
-    @JsonProperty("NCAPBodyType")
-    private String nCAPBodyType;
-    @JsonProperty("NCAPMake")
-    private String nCAPMake;
-    @JsonProperty("NCAPModel")
-    private String nCAPModel;
-    @JsonProperty("NCICCode")
-    private String nCICCode;
     @JsonProperty("NCSABodyType")
     private String nCSABodyType;
     @JsonProperty("NCSAMake")
     private String nCSAMake;
+    @JsonProperty("NCSAMapExcApprovedBy")
+    private String nCSAMapExcApprovedBy;
+    @JsonProperty("NCSAMapExcApprovedOn")
+    private String nCSAMapExcApprovedOn;
+    @JsonProperty("NCSAMappingException")
+    private String nCSAMappingException;
     @JsonProperty("NCSAModel")
     private String nCSAModel;
+    @JsonProperty("NCSANote")
+    private String nCSANote;
     @JsonProperty("Note")
     private String note;
     @JsonProperty("OtherBusInfo")
@@ -448,1465 +446,1735 @@ public class Result {
     private String wheels;
     @JsonProperty("Windows")
     private String windows;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
     @JsonProperty("ABS")
-    public String getABS() {
+    public String getABS()
+    {
         return aBS;
     }
 
     @JsonProperty("ABS")
-    public void setABS(String aBS) {
+    public void setABS(String aBS)
+    {
         this.aBS = aBS;
     }
 
     @JsonProperty("ActiveSafetySysNote")
-    public String getActiveSafetySysNote() {
+    public String getActiveSafetySysNote()
+    {
         return activeSafetySysNote;
     }
 
     @JsonProperty("ActiveSafetySysNote")
-    public void setActiveSafetySysNote(String activeSafetySysNote) {
+    public void setActiveSafetySysNote(String activeSafetySysNote)
+    {
         this.activeSafetySysNote = activeSafetySysNote;
     }
 
     @JsonProperty("AdaptiveCruiseControl")
-    public String getAdaptiveCruiseControl() {
+    public String getAdaptiveCruiseControl()
+    {
         return adaptiveCruiseControl;
     }
 
     @JsonProperty("AdaptiveCruiseControl")
-    public void setAdaptiveCruiseControl(String adaptiveCruiseControl) {
+    public void setAdaptiveCruiseControl(String adaptiveCruiseControl)
+    {
         this.adaptiveCruiseControl = adaptiveCruiseControl;
     }
 
     @JsonProperty("AdaptiveDrivingBeam")
-    public String getAdaptiveDrivingBeam() {
+    public String getAdaptiveDrivingBeam()
+    {
         return adaptiveDrivingBeam;
     }
 
     @JsonProperty("AdaptiveDrivingBeam")
-    public void setAdaptiveDrivingBeam(String adaptiveDrivingBeam) {
+    public void setAdaptiveDrivingBeam(String adaptiveDrivingBeam)
+    {
         this.adaptiveDrivingBeam = adaptiveDrivingBeam;
     }
 
     @JsonProperty("AdaptiveHeadlights")
-    public String getAdaptiveHeadlights() {
+    public String getAdaptiveHeadlights()
+    {
         return adaptiveHeadlights;
     }
 
     @JsonProperty("AdaptiveHeadlights")
-    public void setAdaptiveHeadlights(String adaptiveHeadlights) {
+    public void setAdaptiveHeadlights(String adaptiveHeadlights)
+    {
         this.adaptiveHeadlights = adaptiveHeadlights;
     }
 
     @JsonProperty("AdditionalErrorText")
-    public String getAdditionalErrorText() {
+    public String getAdditionalErrorText()
+    {
         return additionalErrorText;
     }
 
     @JsonProperty("AdditionalErrorText")
-    public void setAdditionalErrorText(String additionalErrorText) {
+    public void setAdditionalErrorText(String additionalErrorText)
+    {
         this.additionalErrorText = additionalErrorText;
     }
 
     @JsonProperty("AirBagLocCurtain")
-    public String getAirBagLocCurtain() {
+    public String getAirBagLocCurtain()
+    {
         return airBagLocCurtain;
     }
 
     @JsonProperty("AirBagLocCurtain")
-    public void setAirBagLocCurtain(String airBagLocCurtain) {
+    public void setAirBagLocCurtain(String airBagLocCurtain)
+    {
         this.airBagLocCurtain = airBagLocCurtain;
     }
 
     @JsonProperty("AirBagLocFront")
-    public String getAirBagLocFront() {
+    public String getAirBagLocFront()
+    {
         return airBagLocFront;
     }
 
     @JsonProperty("AirBagLocFront")
-    public void setAirBagLocFront(String airBagLocFront) {
+    public void setAirBagLocFront(String airBagLocFront)
+    {
         this.airBagLocFront = airBagLocFront;
     }
 
     @JsonProperty("AirBagLocKnee")
-    public String getAirBagLocKnee() {
+    public String getAirBagLocKnee()
+    {
         return airBagLocKnee;
     }
 
     @JsonProperty("AirBagLocKnee")
-    public void setAirBagLocKnee(String airBagLocKnee) {
+    public void setAirBagLocKnee(String airBagLocKnee)
+    {
         this.airBagLocKnee = airBagLocKnee;
     }
 
     @JsonProperty("AirBagLocSeatCushion")
-    public String getAirBagLocSeatCushion() {
+    public String getAirBagLocSeatCushion()
+    {
         return airBagLocSeatCushion;
     }
 
     @JsonProperty("AirBagLocSeatCushion")
-    public void setAirBagLocSeatCushion(String airBagLocSeatCushion) {
+    public void setAirBagLocSeatCushion(String airBagLocSeatCushion)
+    {
         this.airBagLocSeatCushion = airBagLocSeatCushion;
     }
 
     @JsonProperty("AirBagLocSide")
-    public String getAirBagLocSide() {
+    public String getAirBagLocSide()
+    {
         return airBagLocSide;
     }
 
     @JsonProperty("AirBagLocSide")
-    public void setAirBagLocSide(String airBagLocSide) {
+    public void setAirBagLocSide(String airBagLocSide)
+    {
         this.airBagLocSide = airBagLocSide;
     }
 
-    @JsonProperty("Artemis")
-    public String getArtemis() {
-        return artemis;
-    }
-
-    @JsonProperty("Artemis")
-    public void setArtemis(String artemis) {
-        this.artemis = artemis;
-    }
-
     @JsonProperty("AutoReverseSystem")
-    public String getAutoReverseSystem() {
+    public String getAutoReverseSystem()
+    {
         return autoReverseSystem;
     }
 
     @JsonProperty("AutoReverseSystem")
-    public void setAutoReverseSystem(String autoReverseSystem) {
+    public void setAutoReverseSystem(String autoReverseSystem)
+    {
         this.autoReverseSystem = autoReverseSystem;
     }
 
     @JsonProperty("AutomaticPedestrianAlertingSound")
-    public String getAutomaticPedestrianAlertingSound() {
+    public String getAutomaticPedestrianAlertingSound()
+    {
         return automaticPedestrianAlertingSound;
     }
 
     @JsonProperty("AutomaticPedestrianAlertingSound")
-    public void setAutomaticPedestrianAlertingSound(String automaticPedestrianAlertingSound) {
+    public void setAutomaticPedestrianAlertingSound(String automaticPedestrianAlertingSound)
+    {
         this.automaticPedestrianAlertingSound = automaticPedestrianAlertingSound;
     }
 
     @JsonProperty("AxleConfiguration")
-    public String getAxleConfiguration() {
+    public String getAxleConfiguration()
+    {
         return axleConfiguration;
     }
 
     @JsonProperty("AxleConfiguration")
-    public void setAxleConfiguration(String axleConfiguration) {
+    public void setAxleConfiguration(String axleConfiguration)
+    {
         this.axleConfiguration = axleConfiguration;
     }
 
     @JsonProperty("Axles")
-    public String getAxles() {
+    public String getAxles()
+    {
         return axles;
     }
 
     @JsonProperty("Axles")
-    public void setAxles(String axles) {
+    public void setAxles(String axles)
+    {
         this.axles = axles;
     }
 
     @JsonProperty("BasePrice")
-    public String getBasePrice() {
+    public String getBasePrice()
+    {
         return basePrice;
     }
 
     @JsonProperty("BasePrice")
-    public void setBasePrice(String basePrice) {
+    public void setBasePrice(String basePrice)
+    {
         this.basePrice = basePrice;
     }
 
     @JsonProperty("BatteryA")
-    public String getBatteryA() {
+    public String getBatteryA()
+    {
         return batteryA;
     }
 
     @JsonProperty("BatteryA")
-    public void setBatteryA(String batteryA) {
+    public void setBatteryA(String batteryA)
+    {
         this.batteryA = batteryA;
     }
 
     @JsonProperty("BatteryA_to")
-    public String getBatteryATo() {
+    public String getBatteryATo()
+    {
         return batteryATo;
     }
 
     @JsonProperty("BatteryA_to")
-    public void setBatteryATo(String batteryATo) {
+    public void setBatteryATo(String batteryATo)
+    {
         this.batteryATo = batteryATo;
     }
 
     @JsonProperty("BatteryCells")
-    public String getBatteryCells() {
+    public String getBatteryCells()
+    {
         return batteryCells;
     }
 
     @JsonProperty("BatteryCells")
-    public void setBatteryCells(String batteryCells) {
+    public void setBatteryCells(String batteryCells)
+    {
         this.batteryCells = batteryCells;
     }
 
     @JsonProperty("BatteryInfo")
-    public String getBatteryInfo() {
+    public String getBatteryInfo()
+    {
         return batteryInfo;
     }
 
     @JsonProperty("BatteryInfo")
-    public void setBatteryInfo(String batteryInfo) {
+    public void setBatteryInfo(String batteryInfo)
+    {
         this.batteryInfo = batteryInfo;
     }
 
     @JsonProperty("BatteryKWh")
-    public String getBatteryKWh() {
+    public String getBatteryKWh()
+    {
         return batteryKWh;
     }
 
     @JsonProperty("BatteryKWh")
-    public void setBatteryKWh(String batteryKWh) {
+    public void setBatteryKWh(String batteryKWh)
+    {
         this.batteryKWh = batteryKWh;
     }
 
     @JsonProperty("BatteryKWh_to")
-    public String getBatteryKWhTo() {
+    public String getBatteryKWhTo()
+    {
         return batteryKWhTo;
     }
 
     @JsonProperty("BatteryKWh_to")
-    public void setBatteryKWhTo(String batteryKWhTo) {
+    public void setBatteryKWhTo(String batteryKWhTo)
+    {
         this.batteryKWhTo = batteryKWhTo;
     }
 
     @JsonProperty("BatteryModules")
-    public String getBatteryModules() {
+    public String getBatteryModules()
+    {
         return batteryModules;
     }
 
     @JsonProperty("BatteryModules")
-    public void setBatteryModules(String batteryModules) {
+    public void setBatteryModules(String batteryModules)
+    {
         this.batteryModules = batteryModules;
     }
 
     @JsonProperty("BatteryPacks")
-    public String getBatteryPacks() {
+    public String getBatteryPacks()
+    {
         return batteryPacks;
     }
 
     @JsonProperty("BatteryPacks")
-    public void setBatteryPacks(String batteryPacks) {
+    public void setBatteryPacks(String batteryPacks)
+    {
         this.batteryPacks = batteryPacks;
     }
 
     @JsonProperty("BatteryType")
-    public String getBatteryType() {
+    public String getBatteryType()
+    {
         return batteryType;
     }
 
     @JsonProperty("BatteryType")
-    public void setBatteryType(String batteryType) {
+    public void setBatteryType(String batteryType)
+    {
         this.batteryType = batteryType;
     }
 
     @JsonProperty("BatteryV")
-    public String getBatteryV() {
+    public String getBatteryV()
+    {
         return batteryV;
     }
 
     @JsonProperty("BatteryV")
-    public void setBatteryV(String batteryV) {
+    public void setBatteryV(String batteryV)
+    {
         this.batteryV = batteryV;
     }
 
     @JsonProperty("BatteryV_to")
-    public String getBatteryVTo() {
+    public String getBatteryVTo()
+    {
         return batteryVTo;
     }
 
     @JsonProperty("BatteryV_to")
-    public void setBatteryVTo(String batteryVTo) {
+    public void setBatteryVTo(String batteryVTo)
+    {
         this.batteryVTo = batteryVTo;
     }
 
     @JsonProperty("BedLengthIN")
-    public String getBedLengthIN() {
+    public String getBedLengthIN()
+    {
         return bedLengthIN;
     }
 
     @JsonProperty("BedLengthIN")
-    public void setBedLengthIN(String bedLengthIN) {
+    public void setBedLengthIN(String bedLengthIN)
+    {
         this.bedLengthIN = bedLengthIN;
     }
 
     @JsonProperty("BedType")
-    public String getBedType() {
+    public String getBedType()
+    {
         return bedType;
     }
 
     @JsonProperty("BedType")
-    public void setBedType(String bedType) {
+    public void setBedType(String bedType)
+    {
         this.bedType = bedType;
     }
 
     @JsonProperty("BlindSpotMon")
-    public String getBlindSpotMon() {
+    public String getBlindSpotMon()
+    {
         return blindSpotMon;
     }
 
     @JsonProperty("BlindSpotMon")
-    public void setBlindSpotMon(String blindSpotMon) {
+    public void setBlindSpotMon(String blindSpotMon)
+    {
         this.blindSpotMon = blindSpotMon;
     }
 
     @JsonProperty("BodyCabType")
-    public String getBodyCabType() {
+    public String getBodyCabType()
+    {
         return bodyCabType;
     }
 
     @JsonProperty("BodyCabType")
-    public void setBodyCabType(String bodyCabType) {
+    public void setBodyCabType(String bodyCabType)
+    {
         this.bodyCabType = bodyCabType;
     }
 
     @JsonProperty("BodyClass")
-    public String getBodyClass() {
+    public String getBodyClass()
+    {
         return bodyClass;
     }
 
     @JsonProperty("BodyClass")
-    public void setBodyClass(String bodyClass) {
+    public void setBodyClass(String bodyClass)
+    {
         this.bodyClass = bodyClass;
     }
 
     @JsonProperty("BrakeSystemDesc")
-    public String getBrakeSystemDesc() {
+    public String getBrakeSystemDesc()
+    {
         return brakeSystemDesc;
     }
 
     @JsonProperty("BrakeSystemDesc")
-    public void setBrakeSystemDesc(String brakeSystemDesc) {
+    public void setBrakeSystemDesc(String brakeSystemDesc)
+    {
         this.brakeSystemDesc = brakeSystemDesc;
     }
 
     @JsonProperty("BrakeSystemType")
-    public String getBrakeSystemType() {
+    public String getBrakeSystemType()
+    {
         return brakeSystemType;
     }
 
     @JsonProperty("BrakeSystemType")
-    public void setBrakeSystemType(String brakeSystemType) {
+    public void setBrakeSystemType(String brakeSystemType)
+    {
         this.brakeSystemType = brakeSystemType;
     }
 
     @JsonProperty("BusFloorConfigType")
-    public String getBusFloorConfigType() {
+    public String getBusFloorConfigType()
+    {
         return busFloorConfigType;
     }
 
     @JsonProperty("BusFloorConfigType")
-    public void setBusFloorConfigType(String busFloorConfigType) {
+    public void setBusFloorConfigType(String busFloorConfigType)
+    {
         this.busFloorConfigType = busFloorConfigType;
     }
 
     @JsonProperty("BusLength")
-    public String getBusLength() {
+    public String getBusLength()
+    {
         return busLength;
     }
 
     @JsonProperty("BusLength")
-    public void setBusLength(String busLength) {
+    public void setBusLength(String busLength)
+    {
         this.busLength = busLength;
     }
 
     @JsonProperty("BusType")
-    public String getBusType() {
+    public String getBusType()
+    {
         return busType;
     }
 
     @JsonProperty("BusType")
-    public void setBusType(String busType) {
+    public void setBusType(String busType)
+    {
         this.busType = busType;
     }
 
-    @JsonProperty("CAFEBodyType")
-    public String getCAFEBodyType() {
-        return cAFEBodyType;
-    }
-
-    @JsonProperty("CAFEBodyType")
-    public void setCAFEBodyType(String cAFEBodyType) {
-        this.cAFEBodyType = cAFEBodyType;
-    }
-
-    @JsonProperty("CAFEMake")
-    public String getCAFEMake() {
-        return cAFEMake;
-    }
-
-    @JsonProperty("CAFEMake")
-    public void setCAFEMake(String cAFEMake) {
-        this.cAFEMake = cAFEMake;
-    }
-
-    @JsonProperty("CAFEModel")
-    public String getCAFEModel() {
-        return cAFEModel;
-    }
-
-    @JsonProperty("CAFEModel")
-    public void setCAFEModel(String cAFEModel) {
-        this.cAFEModel = cAFEModel;
-    }
-
     @JsonProperty("CAN_AACN")
-    public String getCANAACN() {
+    public String getCANAACN()
+    {
         return cANAACN;
     }
 
     @JsonProperty("CAN_AACN")
-    public void setCANAACN(String cANAACN) {
+    public void setCANAACN(String cANAACN)
+    {
         this.cANAACN = cANAACN;
     }
 
     @JsonProperty("CIB")
-    public String getCIB() {
+    public String getCIB()
+    {
         return cIB;
     }
 
     @JsonProperty("CIB")
-    public void setCIB(String cIB) {
+    public void setCIB(String cIB)
+    {
         this.cIB = cIB;
     }
 
     @JsonProperty("CashForClunkers")
-    public String getCashForClunkers() {
+    public String getCashForClunkers()
+    {
         return cashForClunkers;
     }
 
     @JsonProperty("CashForClunkers")
-    public void setCashForClunkers(String cashForClunkers) {
+    public void setCashForClunkers(String cashForClunkers)
+    {
         this.cashForClunkers = cashForClunkers;
     }
 
     @JsonProperty("ChargerLevel")
-    public String getChargerLevel() {
+    public String getChargerLevel()
+    {
         return chargerLevel;
     }
 
     @JsonProperty("ChargerLevel")
-    public void setChargerLevel(String chargerLevel) {
+    public void setChargerLevel(String chargerLevel)
+    {
         this.chargerLevel = chargerLevel;
     }
 
     @JsonProperty("ChargerPowerKW")
-    public String getChargerPowerKW() {
+    public String getChargerPowerKW()
+    {
         return chargerPowerKW;
     }
 
     @JsonProperty("ChargerPowerKW")
-    public void setChargerPowerKW(String chargerPowerKW) {
+    public void setChargerPowerKW(String chargerPowerKW)
+    {
         this.chargerPowerKW = chargerPowerKW;
     }
 
     @JsonProperty("CoolingType")
-    public String getCoolingType() {
+    public String getCoolingType()
+    {
         return coolingType;
     }
 
     @JsonProperty("CoolingType")
-    public void setCoolingType(String coolingType) {
+    public void setCoolingType(String coolingType)
+    {
         this.coolingType = coolingType;
     }
 
-    @JsonProperty("Country")
-    public String getCountry() {
-        return country;
-    }
-
-    @JsonProperty("Country")
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
     @JsonProperty("CurbWeightLB")
-    public String getCurbWeightLB() {
+    public String getCurbWeightLB()
+    {
         return curbWeightLB;
     }
 
     @JsonProperty("CurbWeightLB")
-    public void setCurbWeightLB(String curbWeightLB) {
+    public void setCurbWeightLB(String curbWeightLB)
+    {
         this.curbWeightLB = curbWeightLB;
     }
 
     @JsonProperty("CustomMotorcycleType")
-    public String getCustomMotorcycleType() {
+    public String getCustomMotorcycleType()
+    {
         return customMotorcycleType;
     }
 
     @JsonProperty("CustomMotorcycleType")
-    public void setCustomMotorcycleType(String customMotorcycleType) {
+    public void setCustomMotorcycleType(String customMotorcycleType)
+    {
         this.customMotorcycleType = customMotorcycleType;
     }
 
     @JsonProperty("DaytimeRunningLight")
-    public String getDaytimeRunningLight() {
+    public String getDaytimeRunningLight()
+    {
         return daytimeRunningLight;
     }
 
     @JsonProperty("DaytimeRunningLight")
-    public void setDaytimeRunningLight(String daytimeRunningLight) {
+    public void setDaytimeRunningLight(String daytimeRunningLight)
+    {
         this.daytimeRunningLight = daytimeRunningLight;
     }
 
     @JsonProperty("DestinationMarket")
-    public String getDestinationMarket() {
+    public String getDestinationMarket()
+    {
         return destinationMarket;
     }
 
     @JsonProperty("DestinationMarket")
-    public void setDestinationMarket(String destinationMarket) {
+    public void setDestinationMarket(String destinationMarket)
+    {
         this.destinationMarket = destinationMarket;
     }
 
     @JsonProperty("DisplacementCC")
-    public String getDisplacementCC() {
+    public String getDisplacementCC()
+    {
         return displacementCC;
     }
 
     @JsonProperty("DisplacementCC")
-    public void setDisplacementCC(String displacementCC) {
+    public void setDisplacementCC(String displacementCC)
+    {
         this.displacementCC = displacementCC;
     }
 
     @JsonProperty("DisplacementCI")
-    public String getDisplacementCI() {
+    public String getDisplacementCI()
+    {
         return displacementCI;
     }
 
     @JsonProperty("DisplacementCI")
-    public void setDisplacementCI(String displacementCI) {
+    public void setDisplacementCI(String displacementCI)
+    {
         this.displacementCI = displacementCI;
     }
 
     @JsonProperty("DisplacementL")
-    public String getDisplacementL() {
+    public String getDisplacementL()
+    {
         return displacementL;
     }
 
     @JsonProperty("DisplacementL")
-    public void setDisplacementL(String displacementL) {
+    public void setDisplacementL(String displacementL)
+    {
         this.displacementL = displacementL;
     }
 
     @JsonProperty("Doors")
-    public String getDoors() {
+    public String getDoors()
+    {
         return doors;
     }
 
     @JsonProperty("Doors")
-    public void setDoors(String doors) {
+    public void setDoors(String doors)
+    {
         this.doors = doors;
     }
 
     @JsonProperty("DriveType")
-    public String getDriveType() {
+    public String getDriveType()
+    {
         return driveType;
     }
 
     @JsonProperty("DriveType")
-    public void setDriveType(String driveType) {
+    public void setDriveType(String driveType)
+    {
         this.driveType = driveType;
     }
 
     @JsonProperty("DriverAssist")
-    public String getDriverAssist() {
+    public String getDriverAssist()
+    {
         return driverAssist;
     }
 
     @JsonProperty("DriverAssist")
-    public void setDriverAssist(String driverAssist) {
+    public void setDriverAssist(String driverAssist)
+    {
         this.driverAssist = driverAssist;
     }
 
     @JsonProperty("DynamicBrakeSupport")
-    public String getDynamicBrakeSupport() {
+    public String getDynamicBrakeSupport()
+    {
         return dynamicBrakeSupport;
     }
 
     @JsonProperty("DynamicBrakeSupport")
-    public void setDynamicBrakeSupport(String dynamicBrakeSupport) {
+    public void setDynamicBrakeSupport(String dynamicBrakeSupport)
+    {
         this.dynamicBrakeSupport = dynamicBrakeSupport;
     }
 
     @JsonProperty("EDR")
-    public String getEDR() {
+    public String getEDR()
+    {
         return eDR;
     }
 
     @JsonProperty("EDR")
-    public void setEDR(String eDR) {
+    public void setEDR(String eDR)
+    {
         this.eDR = eDR;
     }
 
     @JsonProperty("ESC")
-    public String getESC() {
+    public String getESC()
+    {
         return eSC;
     }
 
     @JsonProperty("ESC")
-    public void setESC(String eSC) {
+    public void setESC(String eSC)
+    {
         this.eSC = eSC;
     }
 
     @JsonProperty("EVDriveUnit")
-    public String getEVDriveUnit() {
+    public String getEVDriveUnit()
+    {
         return eVDriveUnit;
     }
 
     @JsonProperty("EVDriveUnit")
-    public void setEVDriveUnit(String eVDriveUnit) {
+    public void setEVDriveUnit(String eVDriveUnit)
+    {
         this.eVDriveUnit = eVDriveUnit;
     }
 
     @JsonProperty("ElectrificationLevel")
-    public String getElectrificationLevel() {
+    public String getElectrificationLevel()
+    {
         return electrificationLevel;
     }
 
     @JsonProperty("ElectrificationLevel")
-    public void setElectrificationLevel(String electrificationLevel) {
+    public void setElectrificationLevel(String electrificationLevel)
+    {
         this.electrificationLevel = electrificationLevel;
     }
 
     @JsonProperty("EngineConfiguration")
-    public String getEngineConfiguration() {
+    public String getEngineConfiguration()
+    {
         return engineConfiguration;
     }
 
     @JsonProperty("EngineConfiguration")
-    public void setEngineConfiguration(String engineConfiguration) {
+    public void setEngineConfiguration(String engineConfiguration)
+    {
         this.engineConfiguration = engineConfiguration;
     }
 
     @JsonProperty("EngineCycles")
-    public String getEngineCycles() {
+    public String getEngineCycles()
+    {
         return engineCycles;
     }
 
     @JsonProperty("EngineCycles")
-    public void setEngineCycles(String engineCycles) {
+    public void setEngineCycles(String engineCycles)
+    {
         this.engineCycles = engineCycles;
     }
 
     @JsonProperty("EngineCylinders")
-    public String getEngineCylinders() {
+    public String getEngineCylinders()
+    {
         return engineCylinders;
     }
 
     @JsonProperty("EngineCylinders")
-    public void setEngineCylinders(String engineCylinders) {
+    public void setEngineCylinders(String engineCylinders)
+    {
         this.engineCylinders = engineCylinders;
     }
 
     @JsonProperty("EngineHP")
-    public String getEngineHP() {
+    public String getEngineHP()
+    {
         return engineHP;
     }
 
     @JsonProperty("EngineHP")
-    public void setEngineHP(String engineHP) {
+    public void setEngineHP(String engineHP)
+    {
         this.engineHP = engineHP;
     }
 
     @JsonProperty("EngineHP_to")
-    public String getEngineHPTo() {
+    public String getEngineHPTo()
+    {
         return engineHPTo;
     }
 
     @JsonProperty("EngineHP_to")
-    public void setEngineHPTo(String engineHPTo) {
+    public void setEngineHPTo(String engineHPTo)
+    {
         this.engineHPTo = engineHPTo;
     }
 
     @JsonProperty("EngineKW")
-    public String getEngineKW() {
+    public String getEngineKW()
+    {
         return engineKW;
     }
 
     @JsonProperty("EngineKW")
-    public void setEngineKW(String engineKW) {
+    public void setEngineKW(String engineKW)
+    {
         this.engineKW = engineKW;
     }
 
     @JsonProperty("EngineManufacturer")
-    public String getEngineManufacturer() {
+    public String getEngineManufacturer()
+    {
         return engineManufacturer;
     }
 
     @JsonProperty("EngineManufacturer")
-    public void setEngineManufacturer(String engineManufacturer) {
+    public void setEngineManufacturer(String engineManufacturer)
+    {
         this.engineManufacturer = engineManufacturer;
     }
 
     @JsonProperty("EngineModel")
-    public String getEngineModel() {
+    public String getEngineModel()
+    {
         return engineModel;
     }
 
     @JsonProperty("EngineModel")
-    public void setEngineModel(String engineModel) {
+    public void setEngineModel(String engineModel)
+    {
         this.engineModel = engineModel;
     }
 
     @JsonProperty("EntertainmentSystem")
-    public String getEntertainmentSystem() {
+    public String getEntertainmentSystem()
+    {
         return entertainmentSystem;
     }
 
     @JsonProperty("EntertainmentSystem")
-    public void setEntertainmentSystem(String entertainmentSystem) {
+    public void setEntertainmentSystem(String entertainmentSystem)
+    {
         this.entertainmentSystem = entertainmentSystem;
     }
 
-    @JsonProperty("EquipmentType")
-    public String getEquipmentType() {
-        return equipmentType;
-    }
-
-    @JsonProperty("EquipmentType")
-    public void setEquipmentType(String equipmentType) {
-        this.equipmentType = equipmentType;
-    }
-
     @JsonProperty("ErrorCode")
-    public String getErrorCode() {
+    public String getErrorCode()
+    {
         return errorCode;
     }
 
     @JsonProperty("ErrorCode")
-    public void setErrorCode(String errorCode) {
+    public void setErrorCode(String errorCode)
+    {
         this.errorCode = errorCode;
     }
 
+    @JsonProperty("ErrorText")
+    public String getErrorText()
+    {
+        return errorText;
+    }
+
+    @JsonProperty("ErrorText")
+    public void setErrorText(String errorText)
+    {
+        this.errorText = errorText;
+    }
+
     @JsonProperty("ForwardCollisionWarning")
-    public String getForwardCollisionWarning() {
+    public String getForwardCollisionWarning()
+    {
         return forwardCollisionWarning;
     }
 
     @JsonProperty("ForwardCollisionWarning")
-    public void setForwardCollisionWarning(String forwardCollisionWarning) {
+    public void setForwardCollisionWarning(String forwardCollisionWarning)
+    {
         this.forwardCollisionWarning = forwardCollisionWarning;
     }
 
     @JsonProperty("FuelInjectionType")
-    public String getFuelInjectionType() {
+    public String getFuelInjectionType()
+    {
         return fuelInjectionType;
     }
 
     @JsonProperty("FuelInjectionType")
-    public void setFuelInjectionType(String fuelInjectionType) {
+    public void setFuelInjectionType(String fuelInjectionType)
+    {
         this.fuelInjectionType = fuelInjectionType;
     }
 
     @JsonProperty("FuelTypePrimary")
-    public String getFuelTypePrimary() {
+    public String getFuelTypePrimary()
+    {
         return fuelTypePrimary;
     }
 
     @JsonProperty("FuelTypePrimary")
-    public void setFuelTypePrimary(String fuelTypePrimary) {
+    public void setFuelTypePrimary(String fuelTypePrimary)
+    {
         this.fuelTypePrimary = fuelTypePrimary;
     }
 
     @JsonProperty("FuelTypeSecondary")
-    public String getFuelTypeSecondary() {
+    public String getFuelTypeSecondary()
+    {
         return fuelTypeSecondary;
     }
 
     @JsonProperty("FuelTypeSecondary")
-    public void setFuelTypeSecondary(String fuelTypeSecondary) {
+    public void setFuelTypeSecondary(String fuelTypeSecondary)
+    {
         this.fuelTypeSecondary = fuelTypeSecondary;
     }
 
+    @JsonProperty("GCWR")
+    public String getGCWR()
+    {
+        return gCWR;
+    }
+
+    @JsonProperty("GCWR")
+    public void setGCWR(String gCWR)
+    {
+        this.gCWR = gCWR;
+    }
+
+    @JsonProperty("GCWR_to")
+    public String getGCWRTo()
+    {
+        return gCWRTo;
+    }
+
+    @JsonProperty("GCWR_to")
+    public void setGCWRTo(String gCWRTo)
+    {
+        this.gCWRTo = gCWRTo;
+    }
+
     @JsonProperty("GVWR")
-    public String getGVWR() {
+    public String getGVWR()
+    {
         return gVWR;
     }
 
     @JsonProperty("GVWR")
-    public void setGVWR(String gVWR) {
+    public void setGVWR(String gVWR)
+    {
         this.gVWR = gVWR;
     }
 
+    @JsonProperty("GVWR_to")
+    public String getGVWRTo()
+    {
+        return gVWRTo;
+    }
+
+    @JsonProperty("GVWR_to")
+    public void setGVWRTo(String gVWRTo)
+    {
+        this.gVWRTo = gVWRTo;
+    }
+
     @JsonProperty("KeylessIgnition")
-    public String getKeylessIgnition() {
+    public String getKeylessIgnition()
+    {
         return keylessIgnition;
     }
 
     @JsonProperty("KeylessIgnition")
-    public void setKeylessIgnition(String keylessIgnition) {
+    public void setKeylessIgnition(String keylessIgnition)
+    {
         this.keylessIgnition = keylessIgnition;
     }
 
     @JsonProperty("LaneDepartureWarning")
-    public String getLaneDepartureWarning() {
+    public String getLaneDepartureWarning()
+    {
         return laneDepartureWarning;
     }
 
     @JsonProperty("LaneDepartureWarning")
-    public void setLaneDepartureWarning(String laneDepartureWarning) {
+    public void setLaneDepartureWarning(String laneDepartureWarning)
+    {
         this.laneDepartureWarning = laneDepartureWarning;
     }
 
     @JsonProperty("LaneKeepSystem")
-    public String getLaneKeepSystem() {
+    public String getLaneKeepSystem()
+    {
         return laneKeepSystem;
     }
 
     @JsonProperty("LaneKeepSystem")
-    public void setLaneKeepSystem(String laneKeepSystem) {
+    public void setLaneKeepSystem(String laneKeepSystem)
+    {
         this.laneKeepSystem = laneKeepSystem;
     }
 
     @JsonProperty("LowerBeamHeadlampLightSource")
-    public String getLowerBeamHeadlampLightSource() {
+    public String getLowerBeamHeadlampLightSource()
+    {
         return lowerBeamHeadlampLightSource;
     }
 
     @JsonProperty("LowerBeamHeadlampLightSource")
-    public void setLowerBeamHeadlampLightSource(String lowerBeamHeadlampLightSource) {
+    public void setLowerBeamHeadlampLightSource(String lowerBeamHeadlampLightSource)
+    {
         this.lowerBeamHeadlampLightSource = lowerBeamHeadlampLightSource;
     }
 
     @JsonProperty("Make")
-    public String getMake() {
+    public String getMake()
+    {
         return make;
     }
 
     @JsonProperty("Make")
-    public void setMake(String make) {
+    public void setMake(String make)
+    {
         this.make = make;
     }
 
     @JsonProperty("Manufacturer")
-    public String getManufacturer() {
+    public String getManufacturer()
+    {
         return manufacturer;
     }
 
     @JsonProperty("Manufacturer")
-    public void setManufacturer(String manufacturer) {
+    public void setManufacturer(String manufacturer)
+    {
         this.manufacturer = manufacturer;
     }
 
     @JsonProperty("ManufacturerId")
-    public String getManufacturerId() {
+    public String getManufacturerId()
+    {
         return manufacturerId;
     }
 
     @JsonProperty("ManufacturerId")
-    public void setManufacturerId(String manufacturerId) {
+    public void setManufacturerId(String manufacturerId)
+    {
         this.manufacturerId = manufacturerId;
     }
 
-    @JsonProperty("ManufacturerType")
-    public String getManufacturerType() {
-        return manufacturerType;
-    }
-
-    @JsonProperty("ManufacturerType")
-    public void setManufacturerType(String manufacturerType) {
-        this.manufacturerType = manufacturerType;
-    }
-
     @JsonProperty("Model")
-    public String getModel() {
+    public String getModel()
+    {
         return model;
     }
 
     @JsonProperty("Model")
-    public void setModel(String model) {
+    public void setModel(String model)
+    {
         this.model = model;
     }
 
     @JsonProperty("ModelYear")
-    public String getModelYear() {
+    public String getModelYear()
+    {
         return modelYear;
     }
 
     @JsonProperty("ModelYear")
-    public void setModelYear(String modelYear) {
+    public void setModelYear(String modelYear)
+    {
         this.modelYear = modelYear;
     }
 
     @JsonProperty("MotorcycleChassisType")
-    public String getMotorcycleChassisType() {
+    public String getMotorcycleChassisType()
+    {
         return motorcycleChassisType;
     }
 
     @JsonProperty("MotorcycleChassisType")
-    public void setMotorcycleChassisType(String motorcycleChassisType) {
+    public void setMotorcycleChassisType(String motorcycleChassisType)
+    {
         this.motorcycleChassisType = motorcycleChassisType;
     }
 
     @JsonProperty("MotorcycleSuspensionType")
-    public String getMotorcycleSuspensionType() {
+    public String getMotorcycleSuspensionType()
+    {
         return motorcycleSuspensionType;
     }
 
     @JsonProperty("MotorcycleSuspensionType")
-    public void setMotorcycleSuspensionType(String motorcycleSuspensionType) {
+    public void setMotorcycleSuspensionType(String motorcycleSuspensionType)
+    {
         this.motorcycleSuspensionType = motorcycleSuspensionType;
     }
 
-    @JsonProperty("NCAPBodyType")
-    public String getNCAPBodyType() {
-        return nCAPBodyType;
-    }
-
-    @JsonProperty("NCAPBodyType")
-    public void setNCAPBodyType(String nCAPBodyType) {
-        this.nCAPBodyType = nCAPBodyType;
-    }
-
-    @JsonProperty("NCAPMake")
-    public String getNCAPMake() {
-        return nCAPMake;
-    }
-
-    @JsonProperty("NCAPMake")
-    public void setNCAPMake(String nCAPMake) {
-        this.nCAPMake = nCAPMake;
-    }
-
-    @JsonProperty("NCAPModel")
-    public String getNCAPModel() {
-        return nCAPModel;
-    }
-
-    @JsonProperty("NCAPModel")
-    public void setNCAPModel(String nCAPModel) {
-        this.nCAPModel = nCAPModel;
-    }
-
-    @JsonProperty("NCICCode")
-    public String getNCICCode() {
-        return nCICCode;
-    }
-
-    @JsonProperty("NCICCode")
-    public void setNCICCode(String nCICCode) {
-        this.nCICCode = nCICCode;
-    }
-
     @JsonProperty("NCSABodyType")
-    public String getNCSABodyType() {
+    public String getNCSABodyType()
+    {
         return nCSABodyType;
     }
 
     @JsonProperty("NCSABodyType")
-    public void setNCSABodyType(String nCSABodyType) {
+    public void setNCSABodyType(String nCSABodyType)
+    {
         this.nCSABodyType = nCSABodyType;
     }
 
     @JsonProperty("NCSAMake")
-    public String getNCSAMake() {
+    public String getNCSAMake()
+    {
         return nCSAMake;
     }
 
     @JsonProperty("NCSAMake")
-    public void setNCSAMake(String nCSAMake) {
+    public void setNCSAMake(String nCSAMake)
+    {
         this.nCSAMake = nCSAMake;
     }
 
+    @JsonProperty("NCSAMapExcApprovedBy")
+    public String getNCSAMapExcApprovedBy()
+    {
+        return nCSAMapExcApprovedBy;
+    }
+
+    @JsonProperty("NCSAMapExcApprovedBy")
+    public void setNCSAMapExcApprovedBy(String nCSAMapExcApprovedBy)
+    {
+        this.nCSAMapExcApprovedBy = nCSAMapExcApprovedBy;
+    }
+
+    @JsonProperty("NCSAMapExcApprovedOn")
+    public String getNCSAMapExcApprovedOn()
+    {
+        return nCSAMapExcApprovedOn;
+    }
+
+    @JsonProperty("NCSAMapExcApprovedOn")
+    public void setNCSAMapExcApprovedOn(String nCSAMapExcApprovedOn)
+    {
+        this.nCSAMapExcApprovedOn = nCSAMapExcApprovedOn;
+    }
+
+    @JsonProperty("NCSAMappingException")
+    public String getNCSAMappingException()
+    {
+        return nCSAMappingException;
+    }
+
+    @JsonProperty("NCSAMappingException")
+    public void setNCSAMappingException(String nCSAMappingException)
+    {
+        this.nCSAMappingException = nCSAMappingException;
+    }
+
     @JsonProperty("NCSAModel")
-    public String getNCSAModel() {
+    public String getNCSAModel()
+    {
         return nCSAModel;
     }
 
     @JsonProperty("NCSAModel")
-    public void setNCSAModel(String nCSAModel) {
+    public void setNCSAModel(String nCSAModel)
+    {
         this.nCSAModel = nCSAModel;
     }
 
+    @JsonProperty("NCSANote")
+    public String getNCSANote()
+    {
+        return nCSANote;
+    }
+
+    @JsonProperty("NCSANote")
+    public void setNCSANote(String nCSANote)
+    {
+        this.nCSANote = nCSANote;
+    }
+
     @JsonProperty("Note")
-    public String getNote() {
+    public String getNote()
+    {
         return note;
     }
 
     @JsonProperty("Note")
-    public void setNote(String note) {
+    public void setNote(String note)
+    {
         this.note = note;
     }
 
     @JsonProperty("OtherBusInfo")
-    public String getOtherBusInfo() {
+    public String getOtherBusInfo()
+    {
         return otherBusInfo;
     }
 
     @JsonProperty("OtherBusInfo")
-    public void setOtherBusInfo(String otherBusInfo) {
+    public void setOtherBusInfo(String otherBusInfo)
+    {
         this.otherBusInfo = otherBusInfo;
     }
 
     @JsonProperty("OtherEngineInfo")
-    public String getOtherEngineInfo() {
+    public String getOtherEngineInfo()
+    {
         return otherEngineInfo;
     }
 
     @JsonProperty("OtherEngineInfo")
-    public void setOtherEngineInfo(String otherEngineInfo) {
+    public void setOtherEngineInfo(String otherEngineInfo)
+    {
         this.otherEngineInfo = otherEngineInfo;
     }
 
     @JsonProperty("OtherMotorcycleInfo")
-    public String getOtherMotorcycleInfo() {
+    public String getOtherMotorcycleInfo()
+    {
         return otherMotorcycleInfo;
     }
 
     @JsonProperty("OtherMotorcycleInfo")
-    public void setOtherMotorcycleInfo(String otherMotorcycleInfo) {
+    public void setOtherMotorcycleInfo(String otherMotorcycleInfo)
+    {
         this.otherMotorcycleInfo = otherMotorcycleInfo;
     }
 
     @JsonProperty("OtherRestraintSystemInfo")
-    public String getOtherRestraintSystemInfo() {
+    public String getOtherRestraintSystemInfo()
+    {
         return otherRestraintSystemInfo;
     }
 
     @JsonProperty("OtherRestraintSystemInfo")
-    public void setOtherRestraintSystemInfo(String otherRestraintSystemInfo) {
+    public void setOtherRestraintSystemInfo(String otherRestraintSystemInfo)
+    {
         this.otherRestraintSystemInfo = otherRestraintSystemInfo;
     }
 
     @JsonProperty("OtherTrailerInfo")
-    public String getOtherTrailerInfo() {
+    public String getOtherTrailerInfo()
+    {
         return otherTrailerInfo;
     }
 
     @JsonProperty("OtherTrailerInfo")
-    public void setOtherTrailerInfo(String otherTrailerInfo) {
+    public void setOtherTrailerInfo(String otherTrailerInfo)
+    {
         this.otherTrailerInfo = otherTrailerInfo;
     }
 
     @JsonProperty("ParkAssist")
-    public String getParkAssist() {
+    public String getParkAssist()
+    {
         return parkAssist;
     }
 
     @JsonProperty("ParkAssist")
-    public void setParkAssist(String parkAssist) {
+    public void setParkAssist(String parkAssist)
+    {
         this.parkAssist = parkAssist;
     }
 
     @JsonProperty("PedestrianAutomaticEmergencyBraking")
-    public String getPedestrianAutomaticEmergencyBraking() {
+    public String getPedestrianAutomaticEmergencyBraking()
+    {
         return pedestrianAutomaticEmergencyBraking;
     }
 
     @JsonProperty("PedestrianAutomaticEmergencyBraking")
-    public void setPedestrianAutomaticEmergencyBraking(String pedestrianAutomaticEmergencyBraking) {
+    public void setPedestrianAutomaticEmergencyBraking(String pedestrianAutomaticEmergencyBraking)
+    {
         this.pedestrianAutomaticEmergencyBraking = pedestrianAutomaticEmergencyBraking;
     }
 
     @JsonProperty("PlantCity")
-    public String getPlantCity() {
+    public String getPlantCity()
+    {
         return plantCity;
     }
 
     @JsonProperty("PlantCity")
-    public void setPlantCity(String plantCity) {
+    public void setPlantCity(String plantCity)
+    {
         this.plantCity = plantCity;
     }
 
     @JsonProperty("PlantCompanyName")
-    public String getPlantCompanyName() {
+    public String getPlantCompanyName()
+    {
         return plantCompanyName;
     }
 
     @JsonProperty("PlantCompanyName")
-    public void setPlantCompanyName(String plantCompanyName) {
+    public void setPlantCompanyName(String plantCompanyName)
+    {
         this.plantCompanyName = plantCompanyName;
     }
 
     @JsonProperty("PlantCountry")
-    public String getPlantCountry() {
+    public String getPlantCountry()
+    {
         return plantCountry;
     }
 
     @JsonProperty("PlantCountry")
-    public void setPlantCountry(String plantCountry) {
+    public void setPlantCountry(String plantCountry)
+    {
         this.plantCountry = plantCountry;
     }
 
     @JsonProperty("PlantState")
-    public String getPlantState() {
+    public String getPlantState()
+    {
         return plantState;
     }
 
     @JsonProperty("PlantState")
-    public void setPlantState(String plantState) {
+    public void setPlantState(String plantState)
+    {
         this.plantState = plantState;
     }
 
     @JsonProperty("PossibleValues")
-    public String getPossibleValues() {
+    public String getPossibleValues()
+    {
         return possibleValues;
     }
 
     @JsonProperty("PossibleValues")
-    public void setPossibleValues(String possibleValues) {
+    public void setPossibleValues(String possibleValues)
+    {
         this.possibleValues = possibleValues;
     }
 
     @JsonProperty("Pretensioner")
-    public String getPretensioner() {
+    public String getPretensioner()
+    {
         return pretensioner;
     }
 
     @JsonProperty("Pretensioner")
-    public void setPretensioner(String pretensioner) {
+    public void setPretensioner(String pretensioner)
+    {
         this.pretensioner = pretensioner;
     }
 
     @JsonProperty("RearCrossTrafficAlert")
-    public String getRearCrossTrafficAlert() {
+    public String getRearCrossTrafficAlert()
+    {
         return rearCrossTrafficAlert;
     }
 
     @JsonProperty("RearCrossTrafficAlert")
-    public void setRearCrossTrafficAlert(String rearCrossTrafficAlert) {
+    public void setRearCrossTrafficAlert(String rearCrossTrafficAlert)
+    {
         this.rearCrossTrafficAlert = rearCrossTrafficAlert;
     }
 
     @JsonProperty("RearVisibilitySystem")
-    public String getRearVisibilitySystem() {
+    public String getRearVisibilitySystem()
+    {
         return rearVisibilitySystem;
     }
 
     @JsonProperty("RearVisibilitySystem")
-    public void setRearVisibilitySystem(String rearVisibilitySystem) {
+    public void setRearVisibilitySystem(String rearVisibilitySystem)
+    {
         this.rearVisibilitySystem = rearVisibilitySystem;
     }
 
     @JsonProperty("SAEAutomationLevel")
-    public String getSAEAutomationLevel() {
+    public String getSAEAutomationLevel()
+    {
         return sAEAutomationLevel;
     }
 
     @JsonProperty("SAEAutomationLevel")
-    public void setSAEAutomationLevel(String sAEAutomationLevel) {
+    public void setSAEAutomationLevel(String sAEAutomationLevel)
+    {
         this.sAEAutomationLevel = sAEAutomationLevel;
     }
 
     @JsonProperty("SAEAutomationLevel_to")
-    public String getSAEAutomationLevelTo() {
+    public String getSAEAutomationLevelTo()
+    {
         return sAEAutomationLevelTo;
     }
 
     @JsonProperty("SAEAutomationLevel_to")
-    public void setSAEAutomationLevelTo(String sAEAutomationLevelTo) {
+    public void setSAEAutomationLevelTo(String sAEAutomationLevelTo)
+    {
         this.sAEAutomationLevelTo = sAEAutomationLevelTo;
     }
 
     @JsonProperty("SeatBeltsAll")
-    public String getSeatBeltsAll() {
+    public String getSeatBeltsAll()
+    {
         return seatBeltsAll;
     }
 
     @JsonProperty("SeatBeltsAll")
-    public void setSeatBeltsAll(String seatBeltsAll) {
+    public void setSeatBeltsAll(String seatBeltsAll)
+    {
         this.seatBeltsAll = seatBeltsAll;
     }
 
     @JsonProperty("SeatRows")
-    public String getSeatRows() {
+    public String getSeatRows()
+    {
         return seatRows;
     }
 
     @JsonProperty("SeatRows")
-    public void setSeatRows(String seatRows) {
+    public void setSeatRows(String seatRows)
+    {
         this.seatRows = seatRows;
     }
 
     @JsonProperty("Seats")
-    public String getSeats() {
+    public String getSeats()
+    {
         return seats;
     }
 
     @JsonProperty("Seats")
-    public void setSeats(String seats) {
+    public void setSeats(String seats)
+    {
         this.seats = seats;
     }
 
     @JsonProperty("SemiautomaticHeadlampBeamSwitching")
-    public String getSemiautomaticHeadlampBeamSwitching() {
+    public String getSemiautomaticHeadlampBeamSwitching()
+    {
         return semiautomaticHeadlampBeamSwitching;
     }
 
     @JsonProperty("SemiautomaticHeadlampBeamSwitching")
-    public void setSemiautomaticHeadlampBeamSwitching(String semiautomaticHeadlampBeamSwitching) {
+    public void setSemiautomaticHeadlampBeamSwitching(String semiautomaticHeadlampBeamSwitching)
+    {
         this.semiautomaticHeadlampBeamSwitching = semiautomaticHeadlampBeamSwitching;
     }
 
     @JsonProperty("Series")
-    public String getSeries() {
+    public String getSeries()
+    {
         return series;
     }
 
     @JsonProperty("Series")
-    public void setSeries(String series) {
+    public void setSeries(String series)
+    {
         this.series = series;
     }
 
     @JsonProperty("Series2")
-    public String getSeries2() {
+    public String getSeries2()
+    {
         return series2;
     }
 
     @JsonProperty("Series2")
-    public void setSeries2(String series2) {
+    public void setSeries2(String series2)
+    {
         this.series2 = series2;
     }
 
     @JsonProperty("SteeringLocation")
-    public String getSteeringLocation() {
+    public String getSteeringLocation()
+    {
         return steeringLocation;
     }
 
     @JsonProperty("SteeringLocation")
-    public void setSteeringLocation(String steeringLocation) {
+    public void setSteeringLocation(String steeringLocation)
+    {
         this.steeringLocation = steeringLocation;
     }
 
     @JsonProperty("SuggestedVIN")
-    public String getSuggestedVIN() {
+    public String getSuggestedVIN()
+    {
         return suggestedVIN;
     }
 
     @JsonProperty("SuggestedVIN")
-    public void setSuggestedVIN(String suggestedVIN) {
+    public void setSuggestedVIN(String suggestedVIN)
+    {
         this.suggestedVIN = suggestedVIN;
     }
 
     @JsonProperty("TPMS")
-    public String getTPMS() {
+    public String getTPMS()
+    {
         return tPMS;
     }
 
     @JsonProperty("TPMS")
-    public void setTPMS(String tPMS) {
+    public void setTPMS(String tPMS)
+    {
         this.tPMS = tPMS;
     }
 
     @JsonProperty("TopSpeedMPH")
-    public String getTopSpeedMPH() {
+    public String getTopSpeedMPH()
+    {
         return topSpeedMPH;
     }
 
     @JsonProperty("TopSpeedMPH")
-    public void setTopSpeedMPH(String topSpeedMPH) {
+    public void setTopSpeedMPH(String topSpeedMPH)
+    {
         this.topSpeedMPH = topSpeedMPH;
     }
 
     @JsonProperty("TrackWidth")
-    public String getTrackWidth() {
+    public String getTrackWidth()
+    {
         return trackWidth;
     }
 
     @JsonProperty("TrackWidth")
-    public void setTrackWidth(String trackWidth) {
+    public void setTrackWidth(String trackWidth)
+    {
         this.trackWidth = trackWidth;
     }
 
     @JsonProperty("TractionControl")
-    public String getTractionControl() {
+    public String getTractionControl()
+    {
         return tractionControl;
     }
 
     @JsonProperty("TractionControl")
-    public void setTractionControl(String tractionControl) {
+    public void setTractionControl(String tractionControl)
+    {
         this.tractionControl = tractionControl;
     }
 
     @JsonProperty("TrailerBodyType")
-    public String getTrailerBodyType() {
+    public String getTrailerBodyType()
+    {
         return trailerBodyType;
     }
 
     @JsonProperty("TrailerBodyType")
-    public void setTrailerBodyType(String trailerBodyType) {
+    public void setTrailerBodyType(String trailerBodyType)
+    {
         this.trailerBodyType = trailerBodyType;
     }
 
     @JsonProperty("TrailerLength")
-    public String getTrailerLength() {
+    public String getTrailerLength()
+    {
         return trailerLength;
     }
 
     @JsonProperty("TrailerLength")
-    public void setTrailerLength(String trailerLength) {
+    public void setTrailerLength(String trailerLength)
+    {
         this.trailerLength = trailerLength;
     }
 
     @JsonProperty("TrailerType")
-    public String getTrailerType() {
+    public String getTrailerType()
+    {
         return trailerType;
     }
 
     @JsonProperty("TrailerType")
-    public void setTrailerType(String trailerType) {
+    public void setTrailerType(String trailerType)
+    {
         this.trailerType = trailerType;
     }
 
     @JsonProperty("TransmissionSpeeds")
-    public String getTransmissionSpeeds() {
+    public String getTransmissionSpeeds()
+    {
         return transmissionSpeeds;
     }
 
     @JsonProperty("TransmissionSpeeds")
-    public void setTransmissionSpeeds(String transmissionSpeeds) {
+    public void setTransmissionSpeeds(String transmissionSpeeds)
+    {
         this.transmissionSpeeds = transmissionSpeeds;
     }
 
     @JsonProperty("TransmissionStyle")
-    public String getTransmissionStyle() {
+    public String getTransmissionStyle()
+    {
         return transmissionStyle;
     }
 
     @JsonProperty("TransmissionStyle")
-    public void setTransmissionStyle(String transmissionStyle) {
+    public void setTransmissionStyle(String transmissionStyle)
+    {
         this.transmissionStyle = transmissionStyle;
     }
 
     @JsonProperty("Trim")
-    public String getTrim() {
+    public String getTrim()
+    {
         return trim;
     }
 
     @JsonProperty("Trim")
-    public void setTrim(String trim) {
+    public void setTrim(String trim)
+    {
         this.trim = trim;
     }
 
     @JsonProperty("Trim2")
-    public String getTrim2() {
+    public String getTrim2()
+    {
         return trim2;
     }
 
     @JsonProperty("Trim2")
-    public void setTrim2(String trim2) {
+    public void setTrim2(String trim2)
+    {
         this.trim2 = trim2;
     }
 
     @JsonProperty("Turbo")
-    public String getTurbo() {
+    public String getTurbo()
+    {
         return turbo;
     }
 
     @JsonProperty("Turbo")
-    public void setTurbo(String turbo) {
+    public void setTurbo(String turbo)
+    {
         this.turbo = turbo;
     }
 
     @JsonProperty("VIN")
-    public String getVIN() {
+    public String getVIN()
+    {
         return vIN;
     }
 
     @JsonProperty("VIN")
-    public void setVIN(String vIN) {
+    public void setVIN(String vIN)
+    {
         this.vIN = vIN;
     }
 
     @JsonProperty("ValveTrainDesign")
-    public String getValveTrainDesign() {
+    public String getValveTrainDesign()
+    {
         return valveTrainDesign;
     }
 
     @JsonProperty("ValveTrainDesign")
-    public void setValveTrainDesign(String valveTrainDesign) {
+    public void setValveTrainDesign(String valveTrainDesign)
+    {
         this.valveTrainDesign = valveTrainDesign;
     }
 
     @JsonProperty("VehicleType")
-    public String getVehicleType() {
+    public String getVehicleType()
+    {
         return vehicleType;
     }
 
     @JsonProperty("VehicleType")
-    public void setVehicleType(String vehicleType) {
+    public void setVehicleType(String vehicleType)
+    {
         this.vehicleType = vehicleType;
     }
 
     @JsonProperty("WheelBaseLong")
-    public String getWheelBaseLong() {
+    public String getWheelBaseLong()
+    {
         return wheelBaseLong;
     }
 
     @JsonProperty("WheelBaseLong")
-    public void setWheelBaseLong(String wheelBaseLong) {
+    public void setWheelBaseLong(String wheelBaseLong)
+    {
         this.wheelBaseLong = wheelBaseLong;
     }
 
     @JsonProperty("WheelBaseShort")
-    public String getWheelBaseShort() {
+    public String getWheelBaseShort()
+    {
         return wheelBaseShort;
     }
 
     @JsonProperty("WheelBaseShort")
-    public void setWheelBaseShort(String wheelBaseShort) {
+    public void setWheelBaseShort(String wheelBaseShort)
+    {
         this.wheelBaseShort = wheelBaseShort;
     }
 
     @JsonProperty("WheelBaseType")
-    public String getWheelBaseType() {
+    public String getWheelBaseType()
+    {
         return wheelBaseType;
     }
 
     @JsonProperty("WheelBaseType")
-    public void setWheelBaseType(String wheelBaseType) {
+    public void setWheelBaseType(String wheelBaseType)
+    {
         this.wheelBaseType = wheelBaseType;
     }
 
     @JsonProperty("WheelSizeFront")
-    public String getWheelSizeFront() {
+    public String getWheelSizeFront()
+    {
         return wheelSizeFront;
     }
 
     @JsonProperty("WheelSizeFront")
-    public void setWheelSizeFront(String wheelSizeFront) {
+    public void setWheelSizeFront(String wheelSizeFront)
+    {
         this.wheelSizeFront = wheelSizeFront;
     }
 
     @JsonProperty("WheelSizeRear")
-    public String getWheelSizeRear() {
+    public String getWheelSizeRear()
+    {
         return wheelSizeRear;
     }
 
     @JsonProperty("WheelSizeRear")
-    public void setWheelSizeRear(String wheelSizeRear) {
+    public void setWheelSizeRear(String wheelSizeRear)
+    {
         this.wheelSizeRear = wheelSizeRear;
     }
 
     @JsonProperty("Wheels")
-    public String getWheels() {
+    public String getWheels()
+    {
         return wheels;
     }
 
     @JsonProperty("Wheels")
-    public void setWheels(String wheels) {
+    public void setWheels(String wheels)
+    {
         this.wheels = wheels;
     }
 
     @JsonProperty("Windows")
-    public String getWindows() {
+    public String getWindows()
+    {
         return windows;
     }
 
     @JsonProperty("Windows")
-    public void setWindows(String windows) {
+    public void setWindows(String windows)
+    {
         this.windows = windows;
+    }
+
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties()
+    {
+        return this.additionalProperties;
+    }
+
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value)
+    {
+        this.additionalProperties.put(name, value);
     }
 
 }
